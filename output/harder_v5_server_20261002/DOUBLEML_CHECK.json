@@ -1,0 +1,560 @@
+{
+  "status": "PASS",
+  "type": "external_predictions_score_only",
+  "checks": [
+    {
+      "level": "baseline",
+      "design": "figure1",
+      "dgp": "linear",
+      "family": "lasso",
+      "max_tolerance": 1e-12
+    },
+    {
+      "level": "baseline",
+      "design": "figure1",
+      "dgp": "linear",
+      "family": "rf",
+      "max_tolerance": 1e-12
+    },
+    {
+      "level": "baseline",
+      "design": "figure1",
+      "dgp": "linear",
+      "family": "xgb",
+      "max_tolerance": 1e-12
+    },
+    {
+      "level": "moderate",
+      "design": "figure1",
+      "dgp": "linear",
+      "family": "lasso",
+      "max_tolerance": 1e-12
+    },
+    {
+      "level": "moderate",
+      "design": "figure1",
+      "dgp": "linear",
+      "family": "rf",
+      "max_tolerance": 1e-12
+    },
+    {
+      "level": "moderate",
+      "design": "figure1",
+      "dgp": "linear",
+      "family": "xgb",
+      "max_tolerance": 1e-12
+    },
+    {
+      "level": "baseline",
+      "design": "figure1",
+      "dgp": "nonlinear",
+      "family": "lasso",
+      "max_tolerance": 1e-12
+    },
+    {
+      "level": "baseline",
+      "design": "figure1",
+      "dgp": "nonlinear",
+      "family": "rf",
+      "max_tolerance": 1e-12
+    },
+    {
+      "level": "baseline",
+      "design": "figure1",
+      "dgp": "nonlinear",
+      "family": "xgb",
+      "max_tolerance": 1e-12
+    },
+    {
+      "level": "moderate",
+      "design": "figure1",
+      "dgp": "nonlinear",
+      "family": "lasso",
+      "max_tolerance": 1e-12
+    },
+    {
+      "level": "moderate",
+      "design": "figure1",
+      "dgp": "nonlinear",
+      "family": "rf",
+      "max_tolerance": 1e-12
+    },
+    {
+      "level": "moderate",
+      "design": "figure1",
+      "dgp": "nonlinear",
+      "family": "xgb",
+      "max_tolerance": 1e-12
+    },
+    {
+      "level": "baseline",
+      "design": "figure2",
+      "dgp": "linear",
+      "family": "lasso",
+      "max_tolerance": 1e-12
+    },
+    {
+      "level": "baseline",
+      "design": "figure2",
+      "dgp": "linear",
+      "family": "rf",
+      "max_tolerance": 1e-12
+    },
+    {
+      "level": "baseline",
+      "design": "figure2",
+      "dgp": "linear",
+      "family": "xgb",
+      "max_tolerance": 1e-12
+    },
+    {
+      "level": "moderate",
+      "design": "figure2",
+      "dgp": "linear",
+      "family": "lasso",
+      "max_tolerance": 1e-12
+    },
+    {
+      "level": "moderate",
+      "design": "figure2",
+      "dgp": "linear",
+      "family": "rf",
+      "max_tolerance": 1e-12
+    },
+    {
+      "level": "moderate",
+      "design": "figure2",
+      "dgp": "linear",
+      "family": "xgb",
+      "max_tolerance": 1e-12
+    },
+    {
+      "level": "baseline",
+      "design": "figure2",
+      "dgp": "nonlinear",
+      "family": "lasso",
+      "max_tolerance": 1e-12
+    },
+    {
+      "level": "baseline",
+      "design": "figure2",
+      "dgp": "nonlinear",
+      "family": "rf",
+      "max_tolerance": 1e-12
+    },
+    {
+      "level": "baseline",
+      "design": "figure2",
+      "dgp": "nonlinear",
+      "family": "xgb",
+      "max_tolerance": 1e-12
+    },
+    {
+      "level": "moderate",
+      "design": "figure2",
+      "dgp": "nonlinear",
+      "family": "lasso",
+      "max_tolerance": 1e-12
+    },
+    {
+      "level": "moderate",
+      "design": "figure2",
+      "dgp": "nonlinear",
+      "family": "rf",
+      "max_tolerance": 1e-12
+    },
+    {
+      "level": "moderate",
+      "design": "figure2",
+      "dgp": "nonlinear",
+      "family": "xgb",
+      "max_tolerance": 1e-12
+    }
+  ],
+  "warnings": [
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    },
+    {
+      "category": "FutureWarning",
+      "message": "'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8."
+    }
+  ]
+}

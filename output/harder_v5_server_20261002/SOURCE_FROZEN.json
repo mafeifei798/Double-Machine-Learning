@@ -1,0 +1,153 @@
+{
+  "identity": {
+    "protocol": {
+      "protocol_id": "slightly-harder-paired-controlled-v5",
+      "seed": 2026100741,
+      "preflight_seed": 2026100641,
+      "n": 1000,
+      "p": 20,
+      "theta0": 0.5,
+      "k_folds": 2,
+      "replications": {
+        "figure1": 200,
+        "figure2": 200
+      },
+      "learners": [
+        "lasso",
+        "rf",
+        "xgb"
+      ],
+      "workers": 24,
+      "levels": [
+        "baseline",
+        "moderate"
+      ],
+      "stage": "exploratory_extension",
+      "artificial_pressure": false,
+      "bias_tolerance": 0.01,
+      "treatment_columns": [
+        0,
+        2,
+        4,
+        6
+      ],
+      "pilot": {
+        "family": "lasso",
+        "alpha": 0.001,
+        "features": "D, all raw X, sigmoid of all X"
+      },
+      "difficulty": {
+        "linear_m_raw_additions": [
+          0.2,
+          0.15
+        ],
+        "linear_g_raw_additions": [
+          0.15,
+          0.15
+        ],
+        "nonlinear_m_raw4_sigmoid6_additions": [
+          0.2,
+          0.2
+        ],
+        "nonlinear_g_sigmoid4_raw6_additions": [
+          0.25,
+          0.2
+        ],
+        "nonlinear_g_tanh0_times_tanh4": 0.3
+      },
+      "rf": {
+        "m": {
+          "n_estimators": 300,
+          "max_depth": null,
+          "min_samples_leaf": 10,
+          "max_features": 1.0,
+          "monotonic_cst": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "g": {
+          "n_estimators": 300,
+          "max_depth": 8,
+          "min_samples_leaf": 2,
+          "max_features": "sqrt"
+        },
+        "ell": {
+          "n_estimators": 300,
+          "max_depth": null,
+          "min_samples_leaf": 1,
+          "max_features": 1.0
+        }
+      },
+      "xgb": {
+        "m": {
+          "n_estimators": 300,
+          "max_depth": 1,
+          "learning_rate": 0.05,
+          "min_child_weight": 20,
+          "reg_lambda": 5,
+          "subsample": 1.0,
+          "colsample_bytree": 1.0,
+          "monotone_constraints": "(1,1,1,1)"
+        },
+        "g": {
+          "n_estimators": 300,
+          "max_depth": 3,
+          "learning_rate": 0.01,
+          "min_child_weight": 2,
+          "reg_lambda": 1,
+          "subsample": 0.9,
+          "colsample_bytree": 0.9
+        },
+        "ell": {
+          "n_estimators": 600,
+          "max_depth": 6,
+          "learning_rate": 0.1,
+          "min_child_weight": 1,
+          "reg_lambda": 1,
+          "subsample": 1.0,
+          "colsample_bytree": 1.0
+        }
+      },
+      "lasso": {
+        "m_alpha": 0.001,
+        "g_alpha_linear": 0.02,
+        "g_alpha_nonlinear": 0.06,
+        "ell_alpha": 0.0001
+      },
+      "bootstrap_draws": 2000,
+      "holm_alpha": 0.05,
+      "decision_rule": "Report every scenario. Primary error evidence is paired MAE/MSE with separate Holm corrections across all 36 comparisons per metric; paired bootstrap absolute-mean-bias differences are exploratory. No retuning or extra repetitions based on outcomes."
+    },
+    "source_hashes": {
+      "configs/harder_v5.json": "e7aa63e131aedb24bf5a77f3b6e31e9be6bbc42c2e37130a1d13fc7e94ce9150",
+      "docs/HARDER_V5_PROTOCOL.md": "0bd8f6403636dc62d49a6dbb2caac3ddc61c89196930a9c3bdf6a8655e5c8113",
+      "src/dml_original/harder_v5.py": "1da9b0849a5ca19c251ab953dd19b45e9caf8d93a2bcf6414aab45d3e4cc6927",
+      "src/dml_original/two_claims_v4.py": "7d5e79623bc7e384eaafa6797e0872faead428d2a8199fb63608843328700dee",
+      "src/dml_original/fair_iv.py": "ca0b08a4a2d981c75661fac16caa289eacd3464a61392acade82541ec040335b",
+      "src/dml_original/iv_thesis_repair.py": "8c95fd02fc88e38de22d36659e252b6a6c2b5030d7cf719f19936c9b6a291649",
+      "src/dml_original/__init__.py": "eab2a35be8f170d57611a3982d151a55a757120ecd71f5e9ec9e5d58c07aa22b",
+      "src/dml_original/simulation.py": "60b72421a1b63ea5509366c1df4b06cc320f82f0045b1a1b808f707a6ba3cecb",
+      "scripts/run_harder_v5.py": "68f2deb189ff84386c26d50441718649739dfb0f729fdede9ed589ecd11a171f",
+      "scripts/run_fair_iv.py": "1df1be953d01aac46b66de7e8d7d498098c419602b7ae9f5e2292f7bdade74c1",
+      "scripts/analyze_fair_iv.py": "92a37f137e8d1c7dd53eaa2b74b7b81797247c839d3b56d5bb9c8bb20a12a20d",
+      "scripts/analyze_harder_v5.py": "f4f37d1976b77486029090163c7b09ddef75d88fdb990b55a2dbeabbdd81a050",
+      "scripts/verify_harder_v5.py": "84ecbba06f9802a3409c91b7e1516339566047ae34f4880eadcef6dea9626d16",
+      "scripts/check_harder_doubleml.py": "0e055cfafeedc2825ac36e0702efc814014cd2ac0ca4ed8be8c6b394dac83ea9",
+      "tests/test_harder_v5.py": "5ed9c519b4cb035cbb15bc9dbebd47b3e12ea0ece012c43ee05af89e855b1dd9"
+    },
+    "environment": {
+      "python": "3.10.19",
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "sklearn": "1.7.2",
+      "xgboost": "3.1.2",
+      "doubleml": "0.10.1",
+      "doubleml_plr_sha256": "256d034b8e7093071ebb75d1c0ef0060c36c6dc8720cbfe95bba023e79edf2b9"
+    }
+  },
+  "identity_sha256": "f6fe9c69118e99972aea93b50722ef68943183c67a10219b0c11a8a360d79bc8",
+  "at": 1791003788.011505
+}

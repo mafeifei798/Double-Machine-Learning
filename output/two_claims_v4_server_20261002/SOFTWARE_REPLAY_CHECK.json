@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "purpose": "software verification only; duplicates excluded from Monte Carlo",
+  "checks": [
+    {
+      "design": "figure1",
+      "dgp": "linear",
+      "replication": 0,
+      "rows": 6,
+      "exact_match": true
+    },
+    {
+      "design": "figure1",
+      "dgp": "nonlinear",
+      "replication": 0,
+      "rows": 6,
+      "exact_match": true
+    },
+    {
+      "design": "figure2",
+      "dgp": "linear",
+      "replication": 0,
+      "rows": 9,
+      "exact_match": true
+    },
+    {
+      "design": "figure2",
+      "dgp": "nonlinear",
+      "replication": 0,
+      "rows": 9,
+      "exact_match": true
+    }
+  ],
+  "warnings": [],
+  "checker_sha256": "6951934d4f20bbb59f2ec764656539a38695b96402470282d9f606717c288610"
+}

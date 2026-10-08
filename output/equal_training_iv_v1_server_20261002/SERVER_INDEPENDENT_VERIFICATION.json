@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "replications": 1000,
+  "rows": 6000,
+  "summary_cells": 24,
+  "paired_contrasts": 12,
+  "warnings": 0,
+  "previous_data_and_folds_verified": true,
+  "identity_sha256": "7fed12c33a3df94bab223b1cba86e64988005ad81f9cc2b96f75ad6fb52b4701"
+}

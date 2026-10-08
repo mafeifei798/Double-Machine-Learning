@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "purpose": "software verification only; duplicates excluded from exploration statistics",
+  "checks": [
+    {
+      "design": "figure1",
+      "dgp": "linear",
+      "replication": 0,
+      "rows": 12,
+      "exact_match": true
+    },
+    {
+      "design": "figure1",
+      "dgp": "nonlinear",
+      "replication": 0,
+      "rows": 12,
+      "exact_match": true
+    },
+    {
+      "design": "figure2",
+      "dgp": "linear",
+      "replication": 0,
+      "rows": 18,
+      "exact_match": true
+    },
+    {
+      "design": "figure2",
+      "dgp": "nonlinear",
+      "replication": 0,
+      "rows": 18,
+      "exact_match": true
+    }
+  ],
+  "warnings": [],
+  "checker_sha256": "72bb4aea6ebf8396992720adf7062fbd5468a9d8504b3106728706312abeff62"
+}

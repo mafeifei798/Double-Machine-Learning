@@ -1,0 +1,30 @@
+{
+  "protocol_id": "slightly-harder-paired-controlled-v5",
+  "seed": 2026100741, "preflight_seed": 2026100641,
+  "n": 1000, "p": 20, "theta0": 0.5, "k_folds": 2,
+  "replications": {"figure1": 200, "figure2": 200},
+  "learners": ["lasso", "rf", "xgb"], "workers": 24,
+  "levels": ["baseline", "moderate"], "stage": "exploratory_extension",
+  "artificial_pressure": false, "bias_tolerance": 0.01,
+  "treatment_columns": [0,2,4,6],
+  "pilot": {"family": "lasso", "alpha": 0.001, "features": "D, all raw X, sigmoid of all X"},
+  "difficulty": {
+    "linear_m_raw_additions": [0.20,0.15], "linear_g_raw_additions": [0.15,0.15],
+    "nonlinear_m_raw4_sigmoid6_additions": [0.20,0.20],
+    "nonlinear_g_sigmoid4_raw6_additions": [0.25,0.20],
+    "nonlinear_g_tanh0_times_tanh4": 0.30
+  },
+  "rf": {
+    "m": {"n_estimators": 300, "max_depth": null, "min_samples_leaf": 10, "max_features": 1.0, "monotonic_cst": [1,1,1,1]},
+    "g": {"n_estimators": 300, "max_depth": 8, "min_samples_leaf": 2, "max_features": "sqrt"},
+    "ell": {"n_estimators": 300, "max_depth": null, "min_samples_leaf": 1, "max_features": 1.0}
+  },
+  "xgb": {
+    "m": {"n_estimators": 300, "max_depth": 1, "learning_rate": 0.05, "min_child_weight": 20, "reg_lambda": 5, "subsample": 1.0, "colsample_bytree": 1.0, "monotone_constraints": "(1,1,1,1)"},
+    "g": {"n_estimators": 300, "max_depth": 3, "learning_rate": 0.01, "min_child_weight": 2, "reg_lambda": 1, "subsample": 0.9, "colsample_bytree": 0.9},
+    "ell": {"n_estimators": 600, "max_depth": 6, "learning_rate": 0.1, "min_child_weight": 1, "reg_lambda": 1, "subsample": 1.0, "colsample_bytree": 1.0}
+  },
+  "lasso": {"m_alpha": 0.001, "g_alpha_linear": 0.02, "g_alpha_nonlinear": 0.06, "ell_alpha": 0.0001},
+  "bootstrap_draws": 2000, "holm_alpha": 0.05,
+  "decision_rule": "Report every scenario. Primary error evidence is paired MAE/MSE with separate Holm corrections across all 36 comparisons per metric; paired bootstrap absolute-mean-bias differences are exploratory. No retuning or extra repetitions based on outcomes."
+}

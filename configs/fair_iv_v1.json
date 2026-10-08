@@ -1,0 +1,27 @@
+{
+  "protocol_id": "fair_iv_v1_20261002",
+  "seed": 2026100211,
+  "development_seed": 2026100311,
+  "n": 1000,
+  "p": 20,
+  "theta0": 0.5,
+  "k_folds": 2,
+  "replications": {"figure1": 300, "figure2": 200},
+  "learners": ["rf", "xgb", "lasso"],
+  "n_estimators": 300,
+  "rf_max_depth": 8,
+  "rf_min_samples_leaf": 2,
+  "xgb_learning_rate": 0.01,
+  "lasso_alpha_linear": {"figure1": 0.02, "figure2": 0.05},
+  "lasso_alpha_nonlinear": 0.06,
+  "methods": ["nonorthogonal_crossfit", "iv_no_split", "iv_crossfit"],
+  "pilot": "official_pooled_residual_ratio",
+  "artificial_pressure": false,
+  "treatment_learner": "same_family_as_outcome_learner",
+  "upstream": {
+    "implementation_commit": "6884b5f9816f180324d854a4d81b22e9d334f5e0",
+    "implementation_url": "https://github.com/DoubleML/doubleml-for-py/blob/6884b5f9816f180324d854a4d81b22e9d334f5e0/doubleml/plm/plr.py",
+    "notebook_commit": "61900b8a8fac8a624af532db32b4be6d504566f0",
+    "notebook_url": "https://github.com/DoubleML/doubleml-docs/blob/61900b8a8fac8a624af532db32b4be6d504566f0/doc/examples/py_double_ml_basics.ipynb"
+  }
+}

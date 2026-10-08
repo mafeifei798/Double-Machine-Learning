@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "stage": "exploratory_extension",
+  "paired_draws": 800,
+  "level_replications": 1600,
+  "estimates": 12000,
+  "summary_cells": 60,
+  "method_contrasts": 36,
+  "difficulty_contrasts": 30,
+  "figures": 16,
+  "warnings": 0,
+  "identity_sha256": "f6fe9c69118e99972aea93b50722ef68943183c67a10219b0c11a8a360d79bc8"
+}

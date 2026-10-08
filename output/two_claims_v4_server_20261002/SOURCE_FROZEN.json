@@ -1,0 +1,119 @@
+{
+  "identity": {
+    "protocol": {
+      "protocol_id": "two-claims-three-families-controlled-v4",
+      "n": 1000,
+      "p": 20,
+      "theta0": 0.5,
+      "k_folds": 2,
+      "replications": {
+        "figure1": 1000,
+        "figure2": 1000
+      },
+      "seed": 2026100631,
+      "preflight_seed": 2026100531,
+      "learners": [
+        "lasso",
+        "rf",
+        "xgb"
+      ],
+      "workers": 24,
+      "artificial_pressure": false,
+      "bias_tolerance": 0.01,
+      "pilot": {
+        "family": "lasso",
+        "alpha": 0.001,
+        "features": "D, all raw X, sigmoid of all X"
+      },
+      "treatment_features": "known DGP support x0,x2; Lasso nonlinear additionally sigmoid(x0),sigmoid(x2)",
+      "rf": {
+        "m": {
+          "n_estimators": 300,
+          "max_depth": null,
+          "min_samples_leaf": 10,
+          "max_features": 1.0,
+          "monotonic_cst": [
+            1,
+            1
+          ]
+        },
+        "g": {
+          "n_estimators": 300,
+          "max_depth": 8,
+          "min_samples_leaf": 2,
+          "max_features": "sqrt"
+        },
+        "ell": {
+          "n_estimators": 300,
+          "max_depth": null,
+          "min_samples_leaf": 1,
+          "max_features": 1.0
+        }
+      },
+      "xgb": {
+        "m": {
+          "n_estimators": 300,
+          "max_depth": 1,
+          "learning_rate": 0.05,
+          "min_child_weight": 20,
+          "reg_lambda": 5,
+          "subsample": 1.0,
+          "colsample_bytree": 1.0,
+          "monotone_constraints": "(1,1)"
+        },
+        "g": {
+          "n_estimators": 300,
+          "max_depth": 3,
+          "learning_rate": 0.01,
+          "min_child_weight": 2,
+          "reg_lambda": 1,
+          "subsample": 0.9,
+          "colsample_bytree": 0.9
+        },
+        "ell": {
+          "n_estimators": 600,
+          "max_depth": 6,
+          "learning_rate": 0.1,
+          "min_child_weight": 1,
+          "reg_lambda": 1,
+          "subsample": 1.0,
+          "colsample_bytree": 1.0
+        }
+      },
+      "lasso": {
+        "m_alpha": 0.001,
+        "g_alpha_linear": 0.02,
+        "g_alpha_nonlinear": 0.06,
+        "ell_alpha": 0.0001
+      },
+      "decision_rule": "individual t-MC95 bias interval wholly inside [-0.01,0.01] supports practical zero; excluding zero detects bias; neither is exact unbiasedness; joint claim requires all cells"
+    },
+    "source_hashes": {
+      "configs/two_claims_v4.json": "f10e79bc59e4a42036a5455f38284fb39838974d979bd466637911da8fef66e3",
+      "docs/TWO_CLAIMS_V4_PROTOCOL.md": "c1acb39a96e242bc4d3182049b52851a2e09c048a4647af3acbaa9eebd58cae8",
+      "src/dml_original/two_claims_v4.py": "7d5e79623bc7e384eaafa6797e0872faead428d2a8199fb63608843328700dee",
+      "src/dml_original/fair_iv.py": "ca0b08a4a2d981c75661fac16caa289eacd3464a61392acade82541ec040335b",
+      "src/dml_original/iv_thesis_repair.py": "8c95fd02fc88e38de22d36659e252b6a6c2b5030d7cf719f19936c9b6a291649",
+      "src/dml_original/__init__.py": "eab2a35be8f170d57611a3982d151a55a757120ecd71f5e9ec9e5d58c07aa22b",
+      "src/dml_original/simulation.py": "60b72421a1b63ea5509366c1df4b06cc320f82f0045b1a1b808f707a6ba3cecb",
+      "scripts/run_two_claims_v4.py": "84cffbf2f7443caf3b1a418af9d9f8a068e12519b6c245f12b5b32c11edff1b5",
+      "scripts/run_fair_iv.py": "1df1be953d01aac46b66de7e8d7d498098c419602b7ae9f5e2292f7bdade74c1",
+      "scripts/analyze_fair_iv.py": "92a37f137e8d1c7dd53eaa2b74b7b81797247c839d3b56d5bb9c8bb20a12a20d",
+      "scripts/analyze_two_claims_v4.py": "ee6a82cf281765b408ee5cfa2b6daab4c737f7b5f39038feee578a034a19fdc3",
+      "scripts/verify_two_claims_v4.py": "0afe501abde1160c456be40ed890a210202c4cbc7fc6f01b37cf7096d1c2398c",
+      "scripts/check_two_claims_doubleml.py": "580cbc56e43076c8bcf0a5551bc717f3388d87a656e8255adc6762d548b26231",
+      "tests/test_two_claims_v4.py": "11744fb2a3e6f57d55c6e2b3de86d4e4a8a50094f96ece1b773b633d307a1b66"
+    },
+    "environment": {
+      "python": "3.10.19",
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "sklearn": "1.7.2",
+      "xgboost": "3.1.2",
+      "doubleml": "0.10.1",
+      "doubleml_plr_sha256": "256d034b8e7093071ebb75d1c0ef0060c36c6dc8720cbfe95bba023e79edf2b9"
+    }
+  },
+  "identity_sha256": "3c67d809c25401a82b7e1b61f9edaebdb0def7889c0608c33eb4968fc5d19a5e",
+  "at": 1790999728.5861309
+}

@@ -1,0 +1,10 @@
+{
+  "figure1_linear_naive_ml_hist.png": "4933935f997cc4634f53d8e5dc940c8aeb8b317f938f466a05d4816ce724c8b6",
+  "figure1_nonlinear_naive_ml_hist.png": "cecbd76426e65f373e4dd6dc5c7d7be44970ef3ee901ea0ee2310eb87ade3f87",
+  "figure2_linear_full_no_split_hist.png": "35c81b657c60045d83a3748e882b31aeb13828bafaeedeb410c02c0706f71e13",
+  "figure2_linear_equal_train_reuse_hist.png": "d59ada364b08f3a63b49a6e3d1a7945d2b5aa337f405d53b2ee25253781b6094",
+  "figure2_nonlinear_full_no_split_hist.png": "7781ca926d4ab3038d12e9873931cab457354c9b32aef0990e943e14f96c8ae9",
+  "figure2_nonlinear_equal_train_reuse_hist.png": "8f7b34a92910af9e7801428af01ee5bd3d10d8ceb640508b352b6533f3f6a35f",
+  "figure1_bias.png": "d763dccef874014fd6c456a4425c6f76a66090e72482ebf3bc9ca6dd7b3abb83",
+  "figure2_bias.png": "4ddabf2d255d901521c7e5c84c36d465d287ea077e06f6cf9b2c6f6d96ad60fa"
+}
