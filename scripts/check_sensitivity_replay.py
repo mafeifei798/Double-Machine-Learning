@@ -8,8 +8,8 @@ import sys
 import warnings
 from threadpoolctl import threadpool_limits
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'src'))
-from dml_original import sensitivity_v6 as s
-from run_sensitivity_v6 import filename
+from dml_studies import sensitivity as s
+from run_sensitivity import filename
 
 
 def main():

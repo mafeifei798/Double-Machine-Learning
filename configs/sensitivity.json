@@ -1,0 +1,27 @@
+{
+  "protocol_id": "iv-only-three-family-sensitivity-v6",
+  "stage": "fixed_grid_sensitivity",
+  "seed": 2026100861,
+  "preflight_seed": 2026100761,
+  "base_config": "configs/moderate_dgp.json",
+  "sample_sizes": [300,1000,3000],
+  "fold_counts": [2,5],
+  "anchor_n": 1000,
+  "anchor_k": 2,
+  "replications": 200,
+  "workers": 48,
+  "levels": ["baseline","moderate"],
+  "learners": ["lasso","rf","xgb"],
+  "presets": ["base","outcome_weak","outcome_strong","treatment_weak","treatment_strong"],
+  "preset_overrides": {
+    "base": {},
+    "outcome_weak": {"rf_g_leaf": 1,"rf_ell_leaf": 1,"xgb_g_depth": 4,"xgb_ell_depth": 7,"lasso_outcome_alpha_multiplier": 0.5},
+    "outcome_strong": {"rf_g_leaf": 5,"rf_ell_leaf": 5,"xgb_g_depth": 2,"xgb_ell_depth": 4,"lasso_outcome_alpha_multiplier": 2.0},
+    "treatment_weak": {"rf_m_leaf": 5,"xgb_m_lambda": 2.5,"lasso_m_alpha_multiplier": 0.5},
+    "treatment_strong": {"rf_m_leaf": 20,"xgb_m_lambda": 10.0,"lasso_m_alpha_multiplier": 2.0}
+  },
+  "bias_tolerance": 0.01,
+  "holm_alpha": 0.05,
+  "artificial_pressure": false,
+  "decision_rule": "All fixed cells reported. Individual MC95 bias intervals; paired one-sided MAE/MSE tests, separate Holm correction across the complete within-setting method family per metric. Parameter/fold/sample-size contrasts use two-sided paired tests with separate Holm families per factor and metric. No pass-conditioned launch, retuning, seed selection or post-result replication extension."
+}

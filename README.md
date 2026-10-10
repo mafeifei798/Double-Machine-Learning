@@ -1,27 +1,29 @@
 # Double Machine Learning for Causal Effect Estimation
 
-University of Macau undergraduate project | Feb-Jun 2026
+Simulation studies of IV-type Double Machine Learning with Lasso, Random Forest,
+and XGBoost, together with a Series OLS / decision-tree analysis of training-data
+reuse. The studies examine orthogonalization, cross-fitting, and sensitivity to
+sample size, fold count, and learner regularization.
 
-IV-type Double Machine Learning and cross-fitting with Lasso, Random Forest,
-and XGBoost, plus a separate Series OLS / decision-tree study of training-data
-reuse. The saved results include subsequent repair, extension, and verification
-runs from October 2026; original execution identifiers and dates are retained.
+The original University of Macau undergraduate project ran from February to
+June 2026. The retained evidence also includes subsequent methodological
+corrections, extensions, and verification from October 2026. These are distinct
+stages of the work; original execution identifiers and dates are retained.
 
 ## Code and saved results
 
-Core estimators: [src/dml_original](src/dml_original).
-Settings: [configs](configs). Runners and checks: [scripts](scripts).
-The [experiment protocols](docs) define the retained studies and shared
-estimation routines.
+Estimators and study definitions: [src/dml_studies](src/dml_studies).
+Configurations: [configs](configs). Execution and validation: [scripts](scripts).
+The [study protocols](docs) specify the designs and interpretation boundaries.
 
 | Study | Saved JSON summaries and figures |
 | --- | --- |
-| Main three-learner study and sensitivity analysis | [600-cell summary](output/sensitivity_v6_server_20261002/evidence/output/formal/analysis/SUMMARY.json), [figures](output/sensitivity_v6_server_20261002/evidence/presentation) |
-| Series OLS / decision-tree reuse study | [summary and figures](output/iv_repair_v3_server_20261002/output/formal/analysis) |
+| Main three-learner study and sensitivity analysis | [600-cell summary](results/sensitivity/summary.json), [figures](results/sensitivity/figures) |
+| Nuisance-learner comparison, including Series OLS / decision-tree reuse | [summary and figures](results/nuisance_comparison) |
 
-The sensitivity figures are provided once in presentation format. Six additional
-moderate-DGP histograms remain beside the complete numerical summary. Earlier
-estimator modules are retained only where they are dependencies of these studies.
+Sensitivity plots are in [figures](results/sensitivity/figures), and six
+moderate-DGP histograms are in [distributions](results/sensitivity/distributions).
+Earlier estimator modules remain only as dependencies of the retained studies.
 
 ## Selected measurements
 
@@ -73,16 +75,23 @@ fits no models:
 python -B scripts/check_saved_results.py
 ```
 
-Experiment runners and fitting-based tests use the original Linux research
-server environment and enforce its execution paths. See the experiment
-protocols for the study definitions.
+Experiment runners and fitting-based tests target the original Linux research
+environment; the runners retain its guarded execution paths. They are not
+portable launch commands for this checkout. See the study protocols for the
+execution conditions.
 
 This repository contains selected code and saved results, not a turnkey
 replication archive. Full historical verification also requires the original
 per-replication archives and server logs, which are not included.
 
-Comments and docstrings have been edited for clarity. Historical byte-level
-verification requires the original frozen source at
+Current filenames are organized by research function. Historical protocol and
+source paths embedded in saved results refer to the original execution archives.
+Imports, path references, comments, and protocols have been updated for
+readability. Saved result files are byte-identical to the retained evidence;
+the numerical procedures, protocol identifiers, random seeds, and historical
+source-hash checks are unchanged. Historical byte-level verification requires
+the original frozen source at
 [this commit](https://github.com/mafeifei798/Double-Machine-Learning/tree/d8aea4bebe87399232be710464a0afc62784b1df).
+The reorganized source is not a replacement for that frozen execution archive.
 
 No license has been assigned.

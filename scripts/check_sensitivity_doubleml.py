@@ -10,13 +10,13 @@ from threadpoolctl import threadpool_limits
 from doubleml import DoubleMLPLR,DoubleMLData
 import doubleml
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'src'))
-from dml_original import sensitivity_v6 as s, harder_v5 as h
-from dml_original.iv_thesis_repair import estimate_iv_type
+from dml_studies import sensitivity as s, moderate_dgp as h
+from dml_studies.iv_score import estimate_iv_type
 
 
 def main():
     assert doubleml.__version__=='0.10.1'
-    p=json.loads((ROOT/'configs/sensitivity_v6.json').read_text());q=json.loads((ROOT/p['base_config']).read_text())
+    p=json.loads((ROOT/'configs/sensitivity.json').read_text());q=json.loads((ROOT/p['base_config']).read_text())
     p.update(seed=p['preflight_seed'],sample_sizes=[100],anchor_n=100)
     for family in ('rf','xgb'):
         for role in ('m','g','ell'):q[family][role]['n_estimators']=5

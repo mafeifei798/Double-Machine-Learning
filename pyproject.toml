@@ -1,7 +1,7 @@
 [project]
-name = "dml-original-optimized"
+name = "dml-causal-estimation"
 version = "0.1.0"
-description = "Minimal source-aligned repair of an undergraduate DML simulation"
+description = "IV-type Double Machine Learning and Monte Carlo evaluation for causal effect estimation"
 requires-python = ">=3.10"
 dependencies = [
   "matplotlib>=3.8",

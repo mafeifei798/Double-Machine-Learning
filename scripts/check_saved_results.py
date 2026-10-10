@@ -13,8 +13,8 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-V6_SUMMARY = "output/sensitivity_v6_server_20261002/evidence/output/formal/analysis/SUMMARY.json"
-V3_SUMMARY = "output/iv_repair_v3_server_20261002/output/formal/analysis/summary.json"
+V6_SUMMARY = "results/sensitivity/summary.json"
+V3_SUMMARY = "results/nuisance_comparison/summary.json"
 
 
 def read_json(relative: str):
@@ -108,9 +108,9 @@ def build_evidence() -> dict:
             "boundary": "Controlled known treatment-candidate / monotone structure; learned nuisance functions, no oracle fitting. Do not substitute v4 or v5 percentages.",
         },
         "training_data_reuse": {
-            "matched_model_evidence": ["src/dml_original/sensitivity_v6.py",
-                                       "src/dml_original/two_claims_v4.py",
-                                       "docs/SENSITIVITY_V6_PROTOCOL.md"],
+            "matched_model_evidence": ["src/dml_studies/sensitivity.py",
+                                       "src/dml_studies/orthogonalization_crossfitting.py",
+                                       "docs/sensitivity_protocol.md"],
             "matched_model_definition": "Reuse and cross-fit share fitted model banks, training sizes, targets, pilots, and random states; prediction membership differs. Full-sample no-split remains a separate arm.",
             "tree_study": "iv_repair_v3", "tree_setting_count": 8,
             "R_per_tree_cell": 200, "maximum_absolute_mean_bias": max_bias,
