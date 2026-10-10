@@ -5,10 +5,9 @@ and XGBoost, together with a Series OLS / decision-tree analysis of training-dat
 reuse. The studies examine orthogonalization, cross-fitting, and sensitivity to
 sample size, fold count, and learner regularization.
 
-The original University of Macau undergraduate project ran from February to
-June 2026. The retained evidence also includes subsequent methodological
-corrections, extensions, and verification from October 2026. These are distinct
-stages of the work; original execution identifiers and dates are retained.
+University of Macau undergraduate research project | Feb-Jun 2026.
+
+Saved results retain their original execution identifiers and provenance.
 
 ## Code and saved results
 
