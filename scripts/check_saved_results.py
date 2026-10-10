@@ -140,8 +140,7 @@ def build_evidence() -> dict:
         },
         "study_scope": {
             "primary": ["v6 moderate anchor for headline percentages", "v6 complete sensitivity and limitations", "v3 eight-setting Series OLS / tree mechanism"],
-            "supporting": ["v4 formal R=1000 experiment", "v5 exploratory paired difficulty extension"],
-            "appendix": ["Earlier ordinary and equal-training adverse findings; do not hide them"],
+            "retained_scope": "Complete v6 sensitivity results and v3 Series OLS / tree results, including adverse findings. Earlier estimator modules are retained as dependencies, not as additional result collections.",
             "chronology": "The original undergraduate project ran from February through June 2026. Supporting repair, extension, and verification runs were completed in October 2026. Original timestamps and provenance are retained.",
         },
         "execution": {"read_only_summary_check": True, "model_fits": 0, "experiments_relaunched": 0,

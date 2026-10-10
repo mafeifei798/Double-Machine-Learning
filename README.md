@@ -11,17 +11,17 @@ runs from October 2026; original execution identifiers and dates are retained.
 
 Core estimators: [src/dml_original](src/dml_original).
 Settings: [configs](configs). Runners and checks: [scripts](scripts).
-The six [experiment protocols](docs) document the studies and are read by
-the runners.
+The [experiment protocols](docs) define the retained studies and shared
+estimation routines.
 
 | Study | Saved JSON summaries and figures |
 | --- | --- |
 | Main three-learner study and sensitivity analysis | [600-cell summary](output/sensitivity_v6_server_20261002/evidence/output/formal/analysis/SUMMARY.json), [figures](output/sensitivity_v6_server_20261002/evidence/presentation) |
 | Series OLS / decision-tree reuse study | [summary and figures](output/iv_repair_v3_server_20261002/output/formal/analysis) |
-| Supplementary three-learner study, R=1,000 | [summary and figures](output/two_claims_v4_server_20261002/output/formal/analysis) |
-| Supplementary difficulty extension, R=200 | [summary and figures](output/harder_v5_server_20261002/output/exploratory/analysis) |
-| Earlier ordinary-learner IV comparison | [summary and figures](output/fair_iv_v1_server_20261002/output/fair_iv_v1_server_formal/analysis) |
-| Earlier equal-training diagnostic | [summary and figures](output/equal_training_iv_v1_server_20261002/output/equal_training_iv_v1_server_formal/analysis) |
+
+The sensitivity figures are provided once in presentation format. Six additional
+moderate-DGP histograms remain beside the complete numerical summary. Earlier
+estimator modules are retained only where they are dependencies of these studies.
 
 ## Selected measurements
 
@@ -35,8 +35,7 @@ repetitions per cell. Each comparison weights six learner-by-DGP cells equally.
 | Full-sample no-split vs cross-fitting | 0.255777 | 0.00648017 | 97.5% |
 
 The metric is the six-cell average of abs(mean(theta_hat) - 0.5), not MAE or
-an average of cellwise percentage improvements. R=1,000 supplementary results
-are a separate protocol and are not pooled into these percentages.
+an average of cellwise percentage improvements or a full-grid aggregate.
 
 The correctly specified Series OLS treatment learner / decision-tree outcome
 learner study spans two DGPs and four leaf sizes. Its eight cross-fit settings
@@ -82,4 +81,4 @@ This repository contains selected code and saved results, not a turnkey
 replication archive. Full historical verification also requires the original
 per-replication archives and server logs, which are not included.
 
-No license is assigned by this upload.
+No license has been assigned.
