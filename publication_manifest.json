@@ -2,18 +2,18 @@
   "schema_version": 1,
   "repository": "mafeifei798/Double-Machine-Learning",
   "visibility": "private",
-  "scope": "Simulation-only selected source, configurations, tests, results, figures, and provenance.",
+  "scope": "Simulation-only source, configurations, runtime protocol inputs, saved numerical results, figures, and provenance; standalone narrative reports are excluded.",
   "originals_modified": false,
   "model_fits": 0,
-  "source_file_count": 213,
+  "source_file_count": 201,
   "files": [
     {
       "path": "README.md",
       "source_sha256": "549db2f1321af2e5ab4b3efd99f7a5e936da8bb699e7e011376cc4041572810e",
       "source_bytes": 17423,
-      "transformation": "project_results_readme_with_chronology_and_limitations",
-      "published_sha256": "12ef0be5ebb080fce1956f5fad92dd099dcabf1c38f5dc2751410f1c8bfde38e",
-      "published_bytes": 6368
+      "transformation": "concise_code_and_results_readme_with_original_chronology_metric_definitions_and_limitations",
+      "published_sha256": "f7a25c16b71a625f2d31be9bfa76d62322339c1c49a8446fde8e73d6e649bc05",
+      "published_bytes": 4730
     },
     {
       "path": "configs/equal_training_iv_v1.json",
@@ -72,28 +72,12 @@
       "published_bytes": 4077
     },
     {
-      "path": "docs/EQUAL_TRAINING_IV_V1_RESULTS.md",
-      "source_sha256": "5f9553892c07b29f56fc3f13aec0b45db27449d27dd4f943b7881a2d9a02dbf9",
-      "source_bytes": 6011,
-      "transformation": "none",
-      "published_sha256": "5f9553892c07b29f56fc3f13aec0b45db27449d27dd4f943b7881a2d9a02dbf9",
-      "published_bytes": 6011
-    },
-    {
       "path": "docs/FAIR_IV_V1_PROTOCOL.md",
       "source_sha256": "e36162548b87eff22a5b41d6df17d3c43537ba1845b234a7e480435af3794892",
       "source_bytes": 4114,
       "transformation": "none",
       "published_sha256": "e36162548b87eff22a5b41d6df17d3c43537ba1845b234a7e480435af3794892",
       "published_bytes": 4114
-    },
-    {
-      "path": "docs/FAIR_IV_V1_RESULTS.md",
-      "source_sha256": "282bcaf23d32b6db61ed501391cc4efbe6b1850319726c28fd9ca54c0ff50d00",
-      "source_bytes": 4912,
-      "transformation": "none",
-      "published_sha256": "282bcaf23d32b6db61ed501391cc4efbe6b1850319726c28fd9ca54c0ff50d00",
-      "published_bytes": 4912
     },
     {
       "path": "docs/HARDER_V5_PROTOCOL.md",
@@ -104,44 +88,12 @@
       "published_bytes": 4946
     },
     {
-      "path": "docs/HARDER_V5_RESULTS.md",
-      "source_sha256": "d60a70612ae6d51988f0fbf50978b11501897ca9371949b31838d7605a3ae818",
-      "source_bytes": 12820,
-      "transformation": "markdown_offline_archive_link_only_with_derivative_label",
-      "published_sha256": "6e94aa06620adbfea05fc1c5baae2a0505994b48a1798dfa832b4484a7f5bab9",
-      "published_bytes": 12978
-    },
-    {
       "path": "docs/IV_REPAIR_V3_PROTOCOL.md",
       "source_sha256": "95bd690915ad0041cf9dd82818e937f9959a23c82568cb9143a0b4ed1da57b8b",
       "source_bytes": 5940,
       "transformation": "none",
       "published_sha256": "95bd690915ad0041cf9dd82818e937f9959a23c82568cb9143a0b4ed1da57b8b",
       "published_bytes": 5940
-    },
-    {
-      "path": "docs/IV_REPAIR_V3_RESULTS.md",
-      "source_sha256": "646a1fe2c50453d298aea7ab2316106c91a2f9ffa1374f53083f712cd1f39402",
-      "source_bytes": 8810,
-      "transformation": "markdown_offline_archive_link_only_with_derivative_label",
-      "published_sha256": "7ba7128a2e49232a5e5b3f3f8fea5cc9f6d2c758e247c192072f06ca5c93297a",
-      "published_bytes": 8965
-    },
-    {
-      "path": "docs/SENSITIVITY_V6_ALL_CELLS.md",
-      "source_sha256": "524eaf5c2bc2d79721d194312f5811be263e3b30d0fb2be271889a8b3e4c9e3f",
-      "source_bytes": 100263,
-      "transformation": "markdown_workspace_links_only_with_derivative_label",
-      "published_sha256": "ceeee76b7a12b97f36cef490c2b191fb12c3eeff876711ae6b4dbe8a12ebf6df",
-      "published_bytes": 100427
-    },
-    {
-      "path": "docs/SENSITIVITY_V6_FIGURES.md",
-      "source_sha256": "955b65023d5cb36fb50f95190a1d54288959e26484910ad6a371d837469af01d",
-      "source_bytes": 9429,
-      "transformation": "markdown_workspace_links_only_with_derivative_label",
-      "published_sha256": "82d11207dc64a7b9ccc232ccaced8d7e3b2044d957604892b59217bb4d910e16",
-      "published_bytes": 7407
     },
     {
       "path": "docs/SENSITIVITY_V6_PROTOCOL.md",
@@ -152,36 +104,12 @@
       "published_bytes": 4834
     },
     {
-      "path": "docs/SENSITIVITY_V6_RESULTS.md",
-      "source_sha256": "b33b6eaa1a4da72ea0c06233df3e0537e675aef6aea756c0442b6b717c782cdb",
-      "source_bytes": 13462,
-      "transformation": "markdown_workspace_links_only_with_derivative_label",
-      "published_sha256": "1d5b72cc4b12892081a6d9a239957c1905e25edccbb015245eaee5ad643a8462",
-      "published_bytes": 12934
-    },
-    {
-      "path": "docs/SENSITIVITY_V6_RESULTS_PRESENTATION.md",
-      "source_sha256": "a367f25f7157e0387bc6730582c15cb22a1e92dfe8081e611424ffcefe68c5da",
-      "source_bytes": 13742,
-      "transformation": "markdown_workspace_links_only_with_derivative_label",
-      "published_sha256": "4aa78b7ef97b1b7f99056e0797343126561b82417c58b1f6f8c5a39679b96ac6",
-      "published_bytes": 13214
-    },
-    {
       "path": "docs/TWO_CLAIMS_V4_PROTOCOL.md",
       "source_sha256": "c1acb39a96e242bc4d3182049b52851a2e09c048a4647af3acbaa9eebd58cae8",
       "source_bytes": 4622,
       "transformation": "none",
       "published_sha256": "c1acb39a96e242bc4d3182049b52851a2e09c048a4647af3acbaa9eebd58cae8",
       "published_bytes": 4622
-    },
-    {
-      "path": "docs/TWO_CLAIMS_V4_RESULTS.md",
-      "source_sha256": "838ab297efa79d950711d428697641fe8d9fb5bbf01fa3638cdd3efdf824906d",
-      "source_bytes": 9842,
-      "transformation": "markdown_offline_archive_link_only_with_derivative_label",
-      "published_sha256": "187579562fbdb4077d66a4f99c1d0e63a2d005df7c29a418cf9dd34b217a69d5",
-      "published_bytes": 9996
     },
     {
       "path": "output/equal_training_iv_v1_server_20261002/SERVER_INDEPENDENT_VERIFICATION.json",
@@ -198,14 +126,6 @@
       "transformation": "none",
       "published_sha256": "fa9b95f17643bf703c4cd7330d7265b736ad4d8c2010d1e4349bf98b77ac6887",
       "published_bytes": 1004
-    },
-    {
-      "path": "output/equal_training_iv_v1_server_20261002/output/equal_training_iv_v1_server_formal/analysis/RESULTS.md",
-      "source_sha256": "3980f2c6e979fe6af7c715f8e0a5db978caec5d3d6047e3b71977e02ab5888aa",
-      "source_bytes": 6433,
-      "transformation": "none",
-      "published_sha256": "3980f2c6e979fe6af7c715f8e0a5db978caec5d3d6047e3b71977e02ab5888aa",
-      "published_bytes": 6433
     },
     {
       "path": "output/equal_training_iv_v1_server_20261002/output/equal_training_iv_v1_server_formal/analysis/aggregate_bias.json",
@@ -294,14 +214,6 @@
       "transformation": "none",
       "published_sha256": "1e8748010bca7f8b1d1fdcea2863c695df853a2926af42f5f603b0be08711be4",
       "published_bytes": 902
-    },
-    {
-      "path": "output/fair_iv_v1_server_20261002/output/fair_iv_v1_server_formal/analysis/RESULTS.md",
-      "source_sha256": "d02336dda44213daf054116e84fa2e949b767b5a742c7d5368205361df883972",
-      "source_bytes": 6910,
-      "transformation": "none",
-      "published_sha256": "d02336dda44213daf054116e84fa2e949b767b5a742c7d5368205361df883972",
-      "published_bytes": 6910
     },
     {
       "path": "output/fair_iv_v1_server_20261002/output/fair_iv_v1_server_formal/analysis/aggregate_bias.json",
@@ -590,14 +502,6 @@
       "transformation": "none",
       "published_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
       "published_bytes": 2
-    },
-    {
-      "path": "output/iv_repair_v3_server_20261002/output/formal/analysis/RESULTS.md",
-      "source_sha256": "f8077f86b8a81a36138591a3283a1fe8b78a774ad0b9aca6aadce6eea00d9886",
-      "source_bytes": 16230,
-      "transformation": "none",
-      "published_sha256": "f8077f86b8a81a36138591a3283a1fe8b78a774ad0b9aca6aadce6eea00d9886",
-      "published_bytes": 16230
     },
     {
       "path": "output/iv_repair_v3_server_20261002/output/formal/analysis/bias_controlled.png",
@@ -1713,23 +1617,11 @@
       "published_bytes": 3790
     }
   ],
-  "offline_references": [
-    {
-      "document": "docs/SENSITIVITY_V6_RESULTS.md",
-      "source_reference": "output/sensitivity_v6_server_20261002/evidence.tgz",
-      "label": "[完整证据包]"
-    },
-    {
-      "document": "docs/SENSITIVITY_V6_RESULTS_PRESENTATION.md",
-      "source_reference": "output/sensitivity_v6_server_20261002/evidence.tgz",
-      "label": "[完整证据包]"
-    }
-  ],
+  "offline_references": [],
   "verification_boundary": "Raw per-replication archives and server logs are not bundled. Original execution dates are not backdated. The original undergraduate project period is distinct from subsequent repair, extension, and verification runs.",
   "added_files": [
     ".gitattributes",
-    ".gitignore",
-    "docs/RAW_EVIDENCE.md"
+    ".gitignore"
   ],
   "verification": {
     "frozen_scientific_sources_unchanged": 19,
@@ -1739,8 +1631,15 @@
     "model_fits": 0,
     "raw_archive_bundled": false,
     "saved_summary_numerical_checks": "PASS",
-    "original_source_files_unchanged": 214,
-    "scientific_source_and_result_bytes_preserved": true
+    "scientific_source_and_result_bytes_preserved": true,
+    "initial_source_files_verified_unchanged": 214,
+    "report_cleanup": {
+      "removed_narrative_files": 13,
+      "retained_pre_cleanup_files_unchanged": 202,
+      "runtime_protocol_inputs_retained": 6,
+      "algorithm_sources_configs_numeric_results_and_figures_unchanged": true,
+      "model_fits": 0
+    }
   },
   "published_inventory": [
     {
@@ -1755,8 +1654,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 6368,
-      "sha256": "12ef0be5ebb080fce1956f5fad92dd099dcabf1c38f5dc2751410f1c8bfde38e"
+      "bytes": 4730,
+      "sha256": "f7a25c16b71a625f2d31be9bfa76d62322339c1c49a8446fde8e73d6e649bc05"
     },
     {
       "path": "configs/equal_training_iv_v1.json",
@@ -1794,19 +1693,9 @@
       "sha256": "c9c6e5c004ae2918ad6d624534aec65672120458d1a47d7a2d85056c25175113"
     },
     {
-      "path": "docs/EQUAL_TRAINING_IV_V1_RESULTS.md",
-      "bytes": 6011,
-      "sha256": "5f9553892c07b29f56fc3f13aec0b45db27449d27dd4f943b7881a2d9a02dbf9"
-    },
-    {
       "path": "docs/FAIR_IV_V1_PROTOCOL.md",
       "bytes": 4114,
       "sha256": "e36162548b87eff22a5b41d6df17d3c43537ba1845b234a7e480435af3794892"
-    },
-    {
-      "path": "docs/FAIR_IV_V1_RESULTS.md",
-      "bytes": 4912,
-      "sha256": "282bcaf23d32b6db61ed501391cc4efbe6b1850319726c28fd9ca54c0ff50d00"
     },
     {
       "path": "docs/HARDER_V5_PROTOCOL.md",
@@ -1814,34 +1703,9 @@
       "sha256": "0bd8f6403636dc62d49a6dbb2caac3ddc61c89196930a9c3bdf6a8655e5c8113"
     },
     {
-      "path": "docs/HARDER_V5_RESULTS.md",
-      "bytes": 12978,
-      "sha256": "6e94aa06620adbfea05fc1c5baae2a0505994b48a1798dfa832b4484a7f5bab9"
-    },
-    {
       "path": "docs/IV_REPAIR_V3_PROTOCOL.md",
       "bytes": 5940,
       "sha256": "95bd690915ad0041cf9dd82818e937f9959a23c82568cb9143a0b4ed1da57b8b"
-    },
-    {
-      "path": "docs/IV_REPAIR_V3_RESULTS.md",
-      "bytes": 8965,
-      "sha256": "7ba7128a2e49232a5e5b3f3f8fea5cc9f6d2c758e247c192072f06ca5c93297a"
-    },
-    {
-      "path": "docs/RAW_EVIDENCE.md",
-      "bytes": 1766,
-      "sha256": "87dab46e9eef164fe0088ac37e5fe0eb66a3f0dc995c530419c295cf13aa5b4e"
-    },
-    {
-      "path": "docs/SENSITIVITY_V6_ALL_CELLS.md",
-      "bytes": 100427,
-      "sha256": "ceeee76b7a12b97f36cef490c2b191fb12c3eeff876711ae6b4dbe8a12ebf6df"
-    },
-    {
-      "path": "docs/SENSITIVITY_V6_FIGURES.md",
-      "bytes": 7407,
-      "sha256": "82d11207dc64a7b9ccc232ccaced8d7e3b2044d957604892b59217bb4d910e16"
     },
     {
       "path": "docs/SENSITIVITY_V6_PROTOCOL.md",
@@ -1849,24 +1713,9 @@
       "sha256": "5552dcac4924fb2af74e76394b30592cf503b4ae5e6dd4b8cae3186e9ab4d4a5"
     },
     {
-      "path": "docs/SENSITIVITY_V6_RESULTS.md",
-      "bytes": 12934,
-      "sha256": "1d5b72cc4b12892081a6d9a239957c1905e25edccbb015245eaee5ad643a8462"
-    },
-    {
-      "path": "docs/SENSITIVITY_V6_RESULTS_PRESENTATION.md",
-      "bytes": 13214,
-      "sha256": "4aa78b7ef97b1b7f99056e0797343126561b82417c58b1f6f8c5a39679b96ac6"
-    },
-    {
       "path": "docs/TWO_CLAIMS_V4_PROTOCOL.md",
       "bytes": 4622,
       "sha256": "c1acb39a96e242bc4d3182049b52851a2e09c048a4647af3acbaa9eebd58cae8"
-    },
-    {
-      "path": "docs/TWO_CLAIMS_V4_RESULTS.md",
-      "bytes": 9996,
-      "sha256": "187579562fbdb4077d66a4f99c1d0e63a2d005df7c29a418cf9dd34b217a69d5"
     },
     {
       "path": "output/equal_training_iv_v1_server_20261002/SERVER_INDEPENDENT_VERIFICATION.json",
@@ -1877,11 +1726,6 @@
       "path": "output/equal_training_iv_v1_server_20261002/output/equal_training_iv_v1_server_formal/analysis/ANALYSIS_LEDGER.json",
       "bytes": 1004,
       "sha256": "fa9b95f17643bf703c4cd7330d7265b736ad4d8c2010d1e4349bf98b77ac6887"
-    },
-    {
-      "path": "output/equal_training_iv_v1_server_20261002/output/equal_training_iv_v1_server_formal/analysis/RESULTS.md",
-      "bytes": 6433,
-      "sha256": "3980f2c6e979fe6af7c715f8e0a5db978caec5d3d6047e3b71977e02ab5888aa"
     },
     {
       "path": "output/equal_training_iv_v1_server_20261002/output/equal_training_iv_v1_server_formal/analysis/aggregate_bias.json",
@@ -1937,11 +1781,6 @@
       "path": "output/fair_iv_v1_server_20261002/output/fair_iv_v1_server_formal/analysis/ANALYSIS_LEDGER.json",
       "bytes": 902,
       "sha256": "1e8748010bca7f8b1d1fdcea2863c695df853a2926af42f5f603b0be08711be4"
-    },
-    {
-      "path": "output/fair_iv_v1_server_20261002/output/fair_iv_v1_server_formal/analysis/RESULTS.md",
-      "bytes": 6910,
-      "sha256": "d02336dda44213daf054116e84fa2e949b767b5a742c7d5368205361df883972"
     },
     {
       "path": "output/fair_iv_v1_server_20261002/output/fair_iv_v1_server_formal/analysis/aggregate_bias.json",
@@ -2122,11 +1961,6 @@
       "path": "output/iv_repair_v3_server_20261002/output/formal/analysis/FAILURES.json",
       "bytes": 2,
       "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
-    },
-    {
-      "path": "output/iv_repair_v3_server_20261002/output/formal/analysis/RESULTS.md",
-      "bytes": 16230,
-      "sha256": "f8077f86b8a81a36138591a3283a1fe8b78a774ad0b9aca6aadce6eea00d9886"
     },
     {
       "path": "output/iv_repair_v3_server_20261002/output/formal/analysis/bias_controlled.png",
@@ -2825,5 +2659,19 @@
     }
   ],
   "original_selection_sha256": "05b1bab5d860b2d0ff996f17a1b056156712a1e4980c2a05a74e4fa1cb0a2342",
-  "original_source_file_count": 214
+  "original_source_file_count": 214,
+  "archived_offline_references": [
+    {
+      "document": "docs/SENSITIVITY_V6_RESULTS.md",
+      "source_reference": "output/sensitivity_v6_server_20261002/evidence.tgz",
+      "label": "[完整证据包]",
+      "document_status": "Removed from current publication; preserved in local backup and Git history."
+    },
+    {
+      "document": "docs/SENSITIVITY_V6_RESULTS_PRESENTATION.md",
+      "source_reference": "output/sensitivity_v6_server_20261002/evidence.tgz",
+      "label": "[完整证据包]",
+      "document_status": "Removed from current publication; preserved in local backup and Git history."
+    }
+  ]
 }

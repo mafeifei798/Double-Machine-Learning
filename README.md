@@ -1,115 +1,89 @@
 # Double Machine Learning for Causal Effect Estimation
 
-Undergraduate simulation project · University of Macau · **Feb–Jun 2026**
+University of Macau undergraduate project | Feb-Jun 2026
 
-Controlled simulations of Neyman-orthogonal IV-type scores and cross-fitting,
-with Lasso, Random Forest, and XGBoost nuisance learners. A separate Series OLS
-and decision-tree study isolates training-data reuse. This snapshot contains
-the selected code, complete selected-stage summaries, figures, and limitations.
+IV-type Double Machine Learning and cross-fitting with Lasso, Random Forest,
+and XGBoost, plus a separate Series OLS / decision-tree study of training-data
+reuse. The saved results include subsequent repair, extension, and verification
+runs from October 2026; original execution identifiers and dates are retained.
 
-The dates above describe the original undergraduate project. This snapshot
-also includes repair, extension, and verification runs completed in October
-2026. Original execution identifiers, dates, and provenance are retained.
+## Code and saved results
 
-## Selected simulation results
+Core estimators: [src/dml_original](src/dml_original).
+Settings: [configs](configs). Runners and checks: [scripts](scripts).
+The six [runtime protocols](docs) are retained because the runners read them
+as frozen experiment inputs. Standalone narrative reports are not bundled.
 
-The headline comparison uses the prespecified moderate-DGP anchor:
-n=1,000, p=20, true effect 0.5, 2-fold cross-fitting, baseline hyperparameters,
-and 200 paired Monte Carlo repetitions per cell. Each comparison gives equal
-weight to six learner-by-DGP cells: three learners and two DGPs.
-
-| Comparison | Average absolute MC mean bias: comparator | DML / cross-fit | Reduction |
-| --- | ---: | ---: | ---: |
-| Non-orthogonal ML vs IV-type DML | 0.0365543 | 0.00387464 | **89.4%** |
-| Full-sample no-split vs cross-fitting | 0.255777 | 0.00648017 | **97.5%** |
-
-Here absolute MC mean bias means abs(mean(theta_hat) − 0.5), averaged across
-the six cells. It is **not MAE**, the mean of cellwise percentage improvements,
-or an aggregate across the entire sensitivity grid.
-
-A separate, correctly specified **Series OLS treatment learner + decision-tree
-outcome learner** study uses two DGPs and four minimum-leaf sizes (2, 5, 10, 20).
-Across its eight cross-fit settings, the maximum absolute MC mean bias is
-**0.00457467**, below 0.0046. This is a point-bias bound, not a guarantee of
-exact finite-sample unbiasedness or a bound on every confidence-interval endpoint.
-
-Sensitivity analysis spans n=300/1,000/3,000 and 2/5 folds, plus four
-one-nuisance-role-at-a-time hyperparameter alternatives at n=1,000, K=2.
-The full 600-cell summaries retain paired Holm-adjusted MAE/MSE tests,
-error decompositions, residual bias, bias-variance tradeoffs, and undercoverage.
-This is not a full hyperparameter factorial.
-
-[Read-only numerical checker](scripts/check_saved_results.py)
-
-## Design and fairness
-
-- Final mainline estimates use the structural IV-type score, not a
-  partialling-out score with a mismatched nuisance target.
-- The three-family experiments learn both nuisance channels using actual
-  Lasso/RF/XGBoost. Series OLS, decision trees, and oracle functions are not
-  substituted into those comparisons.
-- Known low-dimensional treatment candidates and monotone DGP structure
-  are disclosed controls, not unrestricted variable discovery.
-- Cross-fit and equal-training-size reuse share fitted model banks, training
-  sizes, targets, pilots, and random states; prediction membership changes.
-  Ordinary full-sample no-split remains a separate comparison.
-- No extra own-response pressure is added only to no-split in the selected
-  mainline. Earlier adverse ordinary-learner findings are retained.
-
-## Read the reports and view the figures
-
-| Research question | Main evidence and complete figures |
+| Study | Saved JSON summaries and figures |
 | --- | --- |
-| Three-family bias reduction and sensitivity | [Results presentation](docs/SENSITIVITY_V6_RESULTS_PRESENTATION.md), [all 600 cells](docs/SENSITIVITY_V6_ALL_CELLS.md), [30-figure gallery](docs/SENSITIVITY_V6_FIGURES.md), [protocol](docs/SENSITIVITY_V6_PROTOCOL.md) |
-| Series OLS + decision-tree reuse mechanism | [Results and figures](docs/IV_REPAIR_V3_RESULTS.md), [protocol](docs/IV_REPAIR_V3_PROTOCOL.md) |
-| Supplementary formal three-family experiment, R=1,000 | [Results and figures](docs/TWO_CLAIMS_V4_RESULTS.md), [protocol](docs/TWO_CLAIMS_V4_PROTOCOL.md) |
-| Supplementary paired difficulty extension, R=200 | [Results and figures](docs/HARDER_V5_RESULTS.md), [protocol](docs/HARDER_V5_PROTOCOL.md) |
-| Earlier ordinary-learner adverse findings | [Ordinary IV comparison](docs/FAIR_IV_V1_RESULTS.md), [equal-training diagnostic](docs/EQUAL_TRAINING_IV_V1_RESULTS.md) |
+| Main three-learner study and sensitivity analysis | [600-cell summary](output/sensitivity_v6_server_20261002/evidence/output/formal/analysis/SUMMARY.json), [figures](output/sensitivity_v6_server_20261002/evidence/presentation) |
+| Series OLS / decision-tree reuse study | [summary and figures](output/iv_repair_v3_server_20261002/output/formal/analysis) |
+| Supplementary three-learner study, R=1,000 | [summary and figures](output/two_claims_v4_server_20261002/output/formal/analysis) |
+| Supplementary difficulty extension, R=200 | [summary and figures](output/harder_v5_server_20261002/output/exploratory/analysis) |
+| Earlier ordinary-learner IV comparison | [summary and figures](output/fair_iv_v1_server_20261002/output/fair_iv_v1_server_formal/analysis) |
+| Earlier equal-training diagnostic | [summary and figures](output/equal_training_iv_v1_server_20261002/output/equal_training_iv_v1_server_formal/analysis) |
 
-The R=1,000 supplementary experiment and R=200 studies are separate protocols;
-their percentage improvements are not pooled. The headline values above
-come only from the specified moderate sensitivity-study anchor.
+## Selected measurements
 
-## Limits, including negative results
+The main comparison uses the prespecified moderate-DGP anchor: n=1,000, p=20,
+true effect 0.5, two folds, baseline hyperparameters, and 200 paired Monte Carlo
+repetitions per cell. Each comparison weights six learner-by-DGP cells equally.
 
-Bias reduction is not universal unbiasedness, uniformly lower total error,
-or uniformly valid inference. For example:
+| Comparison | Comparator absolute MC mean bias | DML / cross-fit | Reduction |
+| --- | ---: | ---: | ---: |
+| Non-orthogonal ML vs IV-type DML | 0.0365543 | 0.00387464 | 89.4% |
+| Full-sample no-split vs cross-fitting | 0.255777 | 0.00648017 | 97.5% |
 
-- Moderate Figure 1 linear RF at n=1,000, K=2 retains mean bias about +0.01275.
-- In the moderate Figure 2 linear Lasso anchor, bias decreases but MAE rises
-  from about 0.02800 to 0.03051; RMSE also rises.
-- The lowest cross-fit coverage in the tested sensitivity grid is **87.5%**.
-- Five folds are not uniformly better than two. Earlier ordinary all-input
-  RF/XGBoost comparisons can have worse cross-fit bias than no-split.
+The metric is the six-cell average of abs(mean(theta_hat) - 0.5), not MAE or
+an average of cellwise percentage improvements. R=1,000 supplementary results
+are a separate protocol and are not pooled into these percentages.
 
-All favorable, adverse, and inconclusive selected-stage cells remain available.
+The correctly specified Series OLS treatment learner / decision-tree outcome
+learner study spans two DGPs and four leaf sizes. Its eight cross-fit settings
+have maximum absolute MC mean bias 0.00457467; this is not an exact-unbiasedness
+guarantee or a bound on individual estimates.
 
-## Code and checking this snapshot
+## Evaluation scope and limitations
 
-Core implementations are under [src/dml_original](src/dml_original);
-experiment settings are under [configs](configs); runners, analysis, and
-verification utilities are under [scripts](scripts).
+- The three-learner studies learn both nuisance channels. Known low-dimensional
+  treatment candidates and monotone DGP structure are disclosed design controls.
+- Matched reuse and cross-fit arms share fitted model banks, training sizes,
+  targets, pilots, and random states; prediction membership changes.
+- Sensitivity covers n=300/1,000/3,000, two/five folds, and four one-role-at-a-time
+  hyperparameter alternatives at n=1,000 with two folds, not a full factorial.
+- Retained summaries include paired Holm-adjusted MAE/MSE tests, error
+  decompositions, and adverse findings. Linear RF retains residual mean bias
+  around +0.01275 at the moderate anchor; linear Lasso MAE rises from about
+  0.02800 to 0.03051 in one no-split/cross-fit comparison. Minimum cross-fit
+  coverage in the sensitivity grid is 87.5%.
+- Bias reduction does not imply uniformly lower total error, universal
+  unbiasedness, or uniformly valid confidence intervals.
 
-The following check only reads saved JSON summaries, uses the Python standard
-library, and performs **no model fitting**:
+## Install and verify saved results
+
+Python 3.10 or newer is required to install the package:
+
+```bash
+python -m pip install -e '.[test]'
+```
+
+The following standard-library-only check needs no package installation and
+fits no models:
 
 ```bash
 python -B scripts/check_saved_results.py
 ```
 
-Formal simulations and fitting-based tests are server-only. The archived
-runners enforce the original authorized Linux execution root; this snapshot
-does not silently remove that safeguard or launch any job on a local laptop.
-Inspect the relevant protocol before any future authorized reproduction.
+Formal fitting and fitting-based tests remain server-only. Runners enforce
+their original authorized Linux roots; inspect the retained protocols before
+any separately authorized reproduction. No simulations were rerun for this
+report-only cleanup.
 
-This is a selected evidence snapshot, **not a turnkey full replication archive**.
-Raw per-replication records and server logs are not bundled; some historical
-verifiers require those offline files. See [raw-evidence scope](docs/RAW_EVIDENCE.md)
-and [file provenance](publication_manifest.json).
+This is a selected code-and-results snapshot, not a turnkey full replication
+archive. Per-replication archives and server logs are retained separately;
+historical raw-data verifiers may require them. The original sensitivity
+archive has SHA256 `3bdde95dfc1d016e0d8b98c151db432475c2dc6c1d7c0582c44ac01b0bee774a`.
+Source identities and the current file inventory are in
+[publication_manifest.json](publication_manifest.json).
 
-Source/result bytes and original provenance JSON are preserved. Copied Markdown
-may contain explicitly labelled workspace-link normalization; this curated
-README is a presentation derivative. No third-party paper PDFs, personal
-application documents, credentials, SSH files, caches, or unrelated research
-projects are included.
 No license is assigned by this upload.
