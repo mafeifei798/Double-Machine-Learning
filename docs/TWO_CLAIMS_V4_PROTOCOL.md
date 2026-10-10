@@ -1,9 +1,9 @@
 # Two claims, three actual learner families: frozen controlled v4
 
-The requested comparisons are (1) genuinely non-orthogonal ML versus DML,
+This study compares (1) genuinely non-orthogonal ML versus DML,
 and (2) No-split versus Cross-fitting, EACH using Lasso, Random Forest, and
 XGBoost in BOTH learned nuisance channels. No Series OLS or standalone
-Decision Tree is substituted. No simulation or model fit runs locally.
+Decision Tree is substituted.
 
 ## Scope and scientific boundary
 

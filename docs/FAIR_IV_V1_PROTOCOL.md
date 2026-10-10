@@ -11,8 +11,8 @@ this run's formal estimates. Old archives are not overwritten.
 - Four original cells: Figure 1/2, linear/nonlinear; same functions and
   coefficients as `legacy_snapshot/` (including different Figure 1/2 DGPs).
 - n=1,000, p=20, true effect=0.5, Toeplitz rho=0.7, independent standard-normal
-  outcome/treatment errors. n=1,000 follows the user's prior request; it differs
-  from historical n=500/300 and is explicitly NOT an exact historical rerun.
+  outcome/treatment errors. The sample size differs from historical n=500/300,
+  so this is not an exact historical rerun.
 - Original Monte Carlo counts: Figure 1 R=300, Figure 2 R=200 per DGP.
 - Original RF/XGBoost/Lasso settings, including the original design-specific
   linear Lasso penalties 0.02/0.05. The SAME learner family fits ell, m and g.

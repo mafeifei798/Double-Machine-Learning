@@ -1,9 +1,8 @@
 # IV-only three-family sensitivity v6: frozen execution plan
 
-Only simulation is in scope. All fitting, software tests and scientific analysis
-run on the previously authorized rna-server, in a NEW isolated directory
-`/data2/lzx/dhy/dml_sensitivity_v6_20261002`. Local work is source editing,
-AST/hash checks, evidence reading and image review only. Prior runs are untouched.
+This simulation study evaluates sensitivity to sample size, fold count, and
+learner regularization. Fitting, software tests, and scientific analysis use
+an isolated Linux research environment. Prior runs are unchanged.
 
 ## Fixed design before new results
 

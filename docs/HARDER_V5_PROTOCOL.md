@@ -1,9 +1,8 @@
 # Slightly harder paired DGP extension v5: frozen exploratory protocol
 
-Preserve every earlier result. This is an independent, bounded exploratory
-extension, NOT a post-hoc replacement of v4. No local fits or simulations.
-Run on `/data2/lzx/dhy/dml_harder_v5_20261002`, using the existing isolated
-v3 environment read-only, <=24 CPU workers with one thread each, GPU off.
+This is a separate exploratory extension, not a post-hoc replacement of v4.
+Earlier results are unchanged. Execution uses the isolated v3 research
+environment, with at most 24 single-threaded CPU workers and no GPU.
 
 ## Fixed modest increase in complexity
 

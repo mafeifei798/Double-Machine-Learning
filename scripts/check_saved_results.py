@@ -110,8 +110,7 @@ def build_evidence() -> dict:
         "training_data_reuse": {
             "matched_model_evidence": ["src/dml_original/sensitivity_v6.py",
                                        "src/dml_original/two_claims_v4.py",
-                                       "docs/SENSITIVITY_V6_PROTOCOL.md",
-                                       "output/sensitivity_v6_server_20261002/evidence/INDEPENDENT_VERIFICATION.json"],
+                                       "docs/SENSITIVITY_V6_PROTOCOL.md"],
             "matched_model_definition": "Reuse and cross-fit share fitted model banks, training sizes, targets, pilots, and random states; prediction membership differs. Full-sample no-split remains a separate arm.",
             "tree_study": "iv_repair_v3", "tree_setting_count": 8,
             "R_per_tree_cell": 200, "maximum_absolute_mean_bias": max_bias,

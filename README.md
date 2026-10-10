@@ -11,8 +11,8 @@ runs from October 2026; original execution identifiers and dates are retained.
 
 Core estimators: [src/dml_original](src/dml_original).
 Settings: [configs](configs). Runners and checks: [scripts](scripts).
-The six [runtime protocols](docs) are retained because the runners read them
-as frozen experiment inputs. Standalone narrative reports are not bundled.
+The six [experiment protocols](docs) document the studies and are read by
+the runners.
 
 | Study | Saved JSON summaries and figures |
 | --- | --- |
@@ -74,16 +74,12 @@ fits no models:
 python -B scripts/check_saved_results.py
 ```
 
-Formal fitting and fitting-based tests remain server-only. Runners enforce
-their original authorized Linux roots; inspect the retained protocols before
-any separately authorized reproduction. No simulations were rerun for this
-report-only cleanup.
+Experiment runners and fitting-based tests use the original Linux research
+server environment and enforce its execution paths. See the experiment
+protocols for the study definitions.
 
-This is a selected code-and-results snapshot, not a turnkey full replication
-archive. Per-replication archives and server logs are retained separately;
-historical raw-data verifiers may require them. The original sensitivity
-archive has SHA256 `3bdde95dfc1d016e0d8b98c151db432475c2dc6c1d7c0582c44ac01b0bee774a`.
-Source identities and the current file inventory are in
-[publication_manifest.json](publication_manifest.json).
+This repository contains selected code and saved results, not a turnkey
+replication archive. Full historical verification also requires the original
+per-replication archives and server logs, which are not included.
 
 No license is assigned by this upload.

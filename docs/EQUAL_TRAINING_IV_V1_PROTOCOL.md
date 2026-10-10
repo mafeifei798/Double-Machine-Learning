@@ -2,12 +2,12 @@
 
 ## Purpose and chronology
 
-The user requested an equal-training-size diagnostic after seeing the adverse
-ordinary two-fold comparison. This is a follow-up on the same simulated data,
+This equal-training-size diagnostic follows the adverse ordinary two-fold
+comparison. It is a follow-up on the same simulated data,
 not independent confirmation, preregistration of the original question, or a
 guarantee of the desired bias pattern. Source/config/analysis are frozen before
 this diagnostic's estimates are inspected. Historical results stay immutable.
-All fitting and simulation, including tests, run on rna-server only.
+Fitting, simulation, and fitting-based tests use the research server environment.
 
 ## Fixed background
 
