@@ -7,7 +7,7 @@ import sys
 import numpy as np
 from scipy import stats
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'src'))
-from dml_studies import sensitivity as study,orthogonalization_crossfitting as base
+from dml_studies import orthogonalization_crossfitting as base
 from analyze_reference import mean_interval,wilson
 from analyze_moderate_dgp import improvement_p,holm
 from run_reference import atomic_json,digest

@@ -105,7 +105,7 @@ def build_evidence() -> dict:
             "metric_definition": "Equal-weight average of abs(Monte Carlo mean(theta_hat - theta0)) across six learner-by-DGP cells. Not MAE, not mean percentage improvement, not a full-grid aggregate.",
             "reduction_formula": "100 * (1 - absolute_mean_bias_after / absolute_mean_bias_before)",
             "comparisons": aggregates,
-            "boundary": "Controlled known treatment-candidate / monotone structure; learned nuisance functions, no oracle fitting. Do not substitute v4 or v5 percentages.",
+            "boundary": "Controlled known treatment-candidate / monotone structure; learned nuisance functions, no oracle fitting. Reported percentages refer only to the v6 moderate-DGP anchor.",
         },
         "training_data_reuse": {
             "matched_model_evidence": ["src/dml_studies/sensitivity.py",

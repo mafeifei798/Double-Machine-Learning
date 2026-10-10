@@ -18,11 +18,9 @@ The [study protocols](docs) specify the designs and interpretation boundaries.
 
 | Study | Saved JSON summaries and figures |
 | --- | --- |
-| Main three-learner study and sensitivity analysis | [600-cell summary](results/sensitivity/summary.json), [figures](results/sensitivity/figures) |
+| Main three-learner study and sensitivity analysis | [600-cell summary](results/sensitivity/summary.json), [sensitivity plots](results/sensitivity/figures), [moderate-DGP histograms](results/sensitivity/distributions) |
 | Nuisance-learner comparison, including Series OLS / decision-tree reuse | [summary and figures](results/nuisance_comparison) |
 
-Sensitivity plots are in [figures](results/sensitivity/figures), and six
-moderate-DGP histograms are in [distributions](results/sensitivity/distributions).
 Earlier estimator modules remain only as dependencies of the retained studies.
 
 ## Selected measurements
@@ -84,14 +82,10 @@ This repository contains selected code and saved results, not a turnkey
 replication archive. Full historical verification also requires the original
 per-replication archives and server logs, which are not included.
 
-Current filenames are organized by research function. Historical protocol and
-source paths embedded in saved results refer to the original execution archives.
-Imports, path references, comments, and protocols have been updated for
-readability. Saved result files are byte-identical to the retained evidence;
-the numerical procedures, protocol identifiers, random seeds, and historical
-source-hash checks are unchanged. Historical byte-level verification requires
-the original frozen source at
+Saved results are unchanged; their embedded paths refer to historical archives.
+The current source includes naming, import, and documentation changes, while
+numerical procedures, protocol identifiers, seeds, and source-hash checks are
+preserved. Historical byte-level verification requires the frozen source at
 [this commit](https://github.com/mafeifei798/Double-Machine-Learning/tree/d8aea4bebe87399232be710464a0afc62784b1df).
-The reorganized source is not a replacement for that frozen execution archive.
 
 No license has been assigned.

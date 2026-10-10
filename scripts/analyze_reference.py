@@ -161,11 +161,11 @@ def analyze(root):
         b,c=s["bias"],s["coverage"]
         report.append(f"| {s['design']} | {s['dgp']} | {s['learner']} | {s['method']} | {s['R']} | {s['mean_theta']:.6f} | {b['mean']:+.6f} [{b['low']:+.6f}, {b['high']:+.6f}] | {s['rmse']:.6f} | {s['mae']:.6f} | {c['rate']:.3f} [{c['low']:.3f}, {c['high']:.3f}] |")
     report.extend(["", "## Equal-weight absolute-mean-bias contrasts", "",
-                   "A negative reduction means the cross-fit estimator had larger absolute mean bias. Do not select favorable cells or reinterpret this as universal robustness.", ""])
+                   "A negative reduction means the cross-fit estimator had larger absolute mean bias. Contrasts include all cells and do not establish universal robustness.", ""])
     for a in aggregates:
         report.append(f"- {a['design']}, {a['baseline']} vs IV cross-fit: {a['baseline_absolute_mean_bias']:.6f} -> {a['crossfit_absolute_mean_bias']:.6f}; reduction {a['reduction_percent']:.2f}% (paired block-bootstrap 95% interval {a['paired_block_bootstrap_percentile95'][0]:.2f}% to {a['paired_block_bootstrap_percentile95'][1]:.2f}%).")
     report.extend(["", "Every per-cell paired MAE/MSE/bias contrast, including adverse results, is in paired_contrasts.json.",
-                   "The bootstrap interval is descriptive finite-Monte-Carlo uncertainty, not a generalization guarantee. No scientific success gate is based on obtaining four desired conclusions.",
+                   "The bootstrap interval is descriptive finite-Monte-Carlo uncertainty, not a generalization guarantee.",
                    f"", f"Rows: {len(rows)}; failed estimates: {len(failures)}; recorded warnings: {len(warnings)}."])
     (analysis/"RESULTS.md").write_text("\n".join(report)+"\n")
     plot(root,grouped,summaries)
