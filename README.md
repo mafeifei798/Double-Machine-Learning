@@ -7,11 +7,11 @@ with Lasso, Random Forest, and XGBoost nuisance learners. A separate Series OLS
 and decision-tree study isolates training-data reuse. This snapshot contains
 the selected code, complete selected-stage summaries, figures, and limitations.
 
-The project period above is a CV display period, not a claim about when every
-archived run was executed. Original execution identifiers and provenance are
-retained; presentation copies do not backdate experiments.
+The dates above describe the original undergraduate project. This snapshot
+also includes repair, extension, and verification runs completed in October
+2026. Original execution identifiers, dates, and provenance are retained.
 
-## Results corresponding to the research CV
+## Selected simulation results
 
 The headline comparison uses the prespecified moderate-DGP anchor:
 n=1,000, p=20, true effect 0.5, 2-fold cross-fitting, baseline hyperparameters,
@@ -39,8 +39,7 @@ The full 600-cell summaries retain paired Holm-adjusted MAE/MSE tests,
 error decompositions, residual bias, bias-variance tradeoffs, and undercoverage.
 This is not a full hyperparameter factorial.
 
-[Exact CV-to-evidence mapping](CV_DML_EVIDENCE_MAP.json) ·
-[Read-only numerical checker](scripts/check_cv_dml_claims.py)
+[Read-only numerical checker](scripts/check_saved_results.py)
 
 ## Design and fairness
 
@@ -68,7 +67,7 @@ This is not a full hyperparameter factorial.
 | Earlier ordinary-learner adverse findings | [Ordinary IV comparison](docs/FAIR_IV_V1_RESULTS.md), [equal-training diagnostic](docs/EQUAL_TRAINING_IV_V1_RESULTS.md) |
 
 The R=1,000 supplementary experiment and R=200 studies are separate protocols;
-their percentage improvements are not pooled. The CV headline values above
+their percentage improvements are not pooled. The headline values above
 come only from the specified moderate sensitivity-study anchor.
 
 ## Limits, including negative results
@@ -95,7 +94,7 @@ The following check only reads saved JSON summaries, uses the Python standard
 library, and performs **no model fitting**:
 
 ```bash
-python -B scripts/check_cv_dml_claims.py
+python -B scripts/check_saved_results.py
 ```
 
 Formal simulations and fitting-based tests are server-only. The archived
@@ -110,6 +109,7 @@ and [file provenance](publication_manifest.json).
 
 Source/result bytes and original provenance JSON are preserved. Copied Markdown
 may contain explicitly labelled workspace-link normalization; this curated
-README is a presentation derivative. No third-party paper PDF, CV PDF,
-credentials, SSH files, caches, or unrelated research project is included.
+README is a presentation derivative. No third-party paper PDFs, personal
+application documents, credentials, SSH files, caches, or unrelated research
+projects are included.
 No license is assigned by this upload.

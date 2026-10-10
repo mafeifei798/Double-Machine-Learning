@@ -24,13 +24,14 @@ has SHA256:
 ```
 
 Obtain that exact archive from the project owner before running raw-receipt
-checks. The saved-summary CV checker does not need it and fits no models.
+checks. The saved-summary checker does not need it and fits no models.
 
 ## Presentation and chronology
 
-The CV project period describes the undergraduate project, not the execution
-date of every subsequent repair, extension, or verification run. Original
-execution metadata and run identifiers have not been rewritten or backdated.
+The undergraduate project ran from February through June 2026. This snapshot
+also includes repair, extension, and verification runs completed in October
+2026. Original execution metadata and run identifiers have not been rewritten
+or backdated.
 The date-omitting results presentation is explicitly a derivative, not an
 original execution record.
 

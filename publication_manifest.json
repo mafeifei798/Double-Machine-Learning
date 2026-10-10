@@ -3,26 +3,17 @@
   "repository": "mafeifei798/Double-Machine-Learning",
   "visibility": "private",
   "scope": "Simulation-only selected source, configurations, tests, results, figures, and provenance.",
-  "selection_sha256": "05b1bab5d860b2d0ff996f17a1b056156712a1e4980c2a05a74e4fa1cb0a2342",
   "originals_modified": false,
   "model_fits": 0,
-  "source_file_count": 214,
+  "source_file_count": 213,
   "files": [
-    {
-      "path": "CV_DML_EVIDENCE_MAP.json",
-      "source_sha256": "b95a73eda65d5927965844a2ae5e78ba5e6f6584b5586d3eea6b6a14e5f3341d",
-      "source_bytes": 11839,
-      "transformation": "none",
-      "published_sha256": "b95a73eda65d5927965844a2ae5e78ba5e6f6584b5586d3eea6b6a14e5f3341d",
-      "published_bytes": 11839
-    },
     {
       "path": "README.md",
       "source_sha256": "549db2f1321af2e5ab4b3efd99f7a5e936da8bb699e7e011376cc4041572810e",
       "source_bytes": 17423,
-      "transformation": "curated_cv_aligned_presentation_readme",
-      "published_sha256": "62ca18aeeec5a5b9148b5c0279615c2f8e1e0980e39c067eb4980821729194ae",
-      "published_bytes": 6406
+      "transformation": "project_results_readme_with_chronology_and_limitations",
+      "published_sha256": "12ef0be5ebb080fce1956f5fad92dd099dcabf1c38f5dc2751410f1c8bfde38e",
+      "published_bytes": 6368
     },
     {
       "path": "configs/equal_training_iv_v1.json",
@@ -1409,12 +1400,13 @@
       "published_bytes": 2663
     },
     {
-      "path": "scripts/check_cv_dml_claims.py",
+      "path": "scripts/check_saved_results.py",
       "source_sha256": "48fa0e59cc201324d390221f13239a3270bb8afb7ecc2fb9eee1167b3865e731",
       "source_bytes": 11474,
-      "transformation": "none",
-      "published_sha256": "48fa0e59cc201324d390221f13239a3270bb8afb7ecc2fb9eee1167b3865e731",
-      "published_bytes": 11474
+      "transformation": "generic_saved_result_checker_without_application_metadata",
+      "published_sha256": "d0c6ed3b428fc32ab990cc0d6e0934a8cd14d6ed9d0dd2e17ea8294e125c5385",
+      "published_bytes": 9637,
+      "source_path": "scripts/check_cv_dml_claims.py"
     },
     {
       "path": "scripts/check_harder_doubleml.py",
@@ -1725,30 +1717,30 @@
     {
       "document": "docs/SENSITIVITY_V6_RESULTS.md",
       "source_reference": "output/sensitivity_v6_server_20261002/evidence.tgz",
-      "label": "[\u5b8c\u6574\u8bc1\u636e\u5305]"
+      "label": "[完整证据包]"
     },
     {
       "document": "docs/SENSITIVITY_V6_RESULTS_PRESENTATION.md",
       "source_reference": "output/sensitivity_v6_server_20261002/evidence.tgz",
-      "label": "[\u5b8c\u6574\u8bc1\u636e\u5305]"
+      "label": "[完整证据包]"
     }
   ],
-  "verification_boundary": "Raw per-replication archives and server logs are not bundled. Original execution dates are not backdated. The CV project period is distinct from subsequent execution dates.",
+  "verification_boundary": "Raw per-replication archives and server logs are not bundled. Original execution dates are not backdated. The original undergraduate project period is distinct from subsequent repair, extension, and verification runs.",
   "added_files": [
     ".gitattributes",
     ".gitignore",
     "docs/RAW_EVIDENCE.md"
   ],
   "verification": {
-    "source_originals_unchanged": 214,
     "frozen_scientific_sources_unchanged": 19,
-    "source_and_result_bytes_preserved": true,
     "markdown_internal_links": "PASS",
     "python_AST_parse": "PASS_NO_CODE_EXECUTION",
-    "cv_numerical_claims": "PASS",
     "credential_pattern_scan": "PASS_BOUNDED_NOT_COMPREHENSIVE",
     "model_fits": 0,
-    "raw_archive_bundled": false
+    "raw_archive_bundled": false,
+    "saved_summary_numerical_checks": "PASS",
+    "original_source_files_unchanged": 214,
+    "scientific_source_and_result_bytes_preserved": true
   },
   "published_inventory": [
     {
@@ -1762,14 +1754,9 @@
       "sha256": "4816661edaa2a9e59e40ed953ef7303490d4b5f3a852fc5262ec400c178e6437"
     },
     {
-      "path": "CV_DML_EVIDENCE_MAP.json",
-      "bytes": 11839,
-      "sha256": "b95a73eda65d5927965844a2ae5e78ba5e6f6584b5586d3eea6b6a14e5f3341d"
-    },
-    {
       "path": "README.md",
-      "bytes": 6406,
-      "sha256": "62ca18aeeec5a5b9148b5c0279615c2f8e1e0980e39c067eb4980821729194ae"
+      "bytes": 6368,
+      "sha256": "12ef0be5ebb080fce1956f5fad92dd099dcabf1c38f5dc2751410f1c8bfde38e"
     },
     {
       "path": "configs/equal_training_iv_v1.json",
@@ -1843,8 +1830,8 @@
     },
     {
       "path": "docs/RAW_EVIDENCE.md",
-      "bytes": 1752,
-      "sha256": "09e9e091decf54717dcd349ceb9bf2f841ccd627427de96165ec064773becd3a"
+      "bytes": 1766,
+      "sha256": "87dab46e9eef164fe0088ac37e5fe0eb66a3f0dc995c530419c295cf13aa5b4e"
     },
     {
       "path": "docs/SENSITIVITY_V6_ALL_CELLS.md",
@@ -2642,9 +2629,9 @@
       "sha256": "c0fa5b85ac3d4d48f81cdcd269f53f64859e2e55081a29e53814c2fe8084816e"
     },
     {
-      "path": "scripts/check_cv_dml_claims.py",
-      "bytes": 11474,
-      "sha256": "48fa0e59cc201324d390221f13239a3270bb8afb7ecc2fb9eee1167b3865e731"
+      "path": "scripts/check_saved_results.py",
+      "bytes": 9637,
+      "sha256": "d0c6ed3b428fc32ab990cc0d6e0934a8cd14d6ed9d0dd2e17ea8294e125c5385"
     },
     {
       "path": "scripts/check_harder_doubleml.py",
@@ -2836,5 +2823,7 @@
       "bytes": 3790,
       "sha256": "11744fb2a3e6f57d55c6e2b3de86d4e4a8a50094f96ece1b773b633d307a1b66"
     }
-  ]
+  ],
+  "original_selection_sha256": "05b1bab5d860b2d0ff996f17a1b056156712a1e4980c2a05a74e4fa1cb0a2342",
+  "original_source_file_count": 214
 }
