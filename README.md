@@ -81,4 +81,8 @@ This repository contains selected code and saved results, not a turnkey
 replication archive. Full historical verification also requires the original
 per-replication archives and server logs, which are not included.
 
+Comments and docstrings have been edited for clarity. Historical byte-level
+verification requires the original frozen source at
+[this commit](https://github.com/mafeifei798/Double-Machine-Learning/tree/d8aea4bebe87399232be710464a0afc62784b1df).
+
 No license has been assigned.

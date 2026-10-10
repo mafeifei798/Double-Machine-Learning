@@ -1,10 +1,13 @@
-"""IV-type-only repair of the two original thesis simulation stories.
+"""Shared IV-type utilities and legacy simulation mechanisms.
+
+The v3/v6 studies reuse the estimator and data utilities; the historical
+experiments described below are separate.
 
 The active causal estimator in this module is always the structural score
 
     (D - m_hat(X)) * (Y - theta * D - g_hat(X)).
 
-Figure 1 keeps the historically flawed outcome-nuisance/raw-treatment ratio as
+Figure 1 keeps the historical outcome-nuisance/raw-treatment ratio as
 an explicitly non-DML diagnostic and compares it with cross-fitted IV-type DML.
 Figure 2 uses the same IV-type estimator on both sides and adds a prespecified
 own-observation stress only to the no-split outcome nuisance.  The stress is a
@@ -313,7 +316,11 @@ def estimate_iv_type(
 def estimate_outcome_mismatch(
     y: np.ndarray, d: np.ndarray, ell_hat: np.ndarray
 ) -> Estimate:
-    """Historical non-DML ratio using an outcome nuisance with raw treatment."""
+    """Compute the raw-treatment residual ratio.
+
+    Structural g gives the non-orthogonal ML estimator. Outcome regression
+    ell gives the historical nuisance-mismatch diagnostic.
+    """
 
     yv, dv, lv = (np.asarray(value, dtype=float) for value in (y, d, ell_hat))
     if yv.ndim != 1 or dv.shape != yv.shape or lv.shape != yv.shape:

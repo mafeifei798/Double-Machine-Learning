@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Read-only verification and complete, unfiltered Monte Carlo reporting."""
+"""Verify saved replications and generate Monte Carlo summaries and figures."""
 from __future__ import annotations
 
 import argparse
@@ -116,8 +116,8 @@ def analyze(root):
                     a=grouped[(design,dgp,learner,baseline)]; b=grouped[(design,dgp,learner,"iv_crossfit")]
                     if [r["replication"] for r in a] != [r["replication"] for r in b]:
                         raise RuntimeError("unpaired contrast")
-                    # Negatives favor cross-fitting; signed bias differences
-                    # alone do not establish reduction in absolute bias.
+                    # Negative MAE, MSE, and absolute-mean-bias differences favor cross-fitting.
+                    # Signed-bias differences alone do not indicate improvement.
                     contrasts.append(dict(design=design,dgp=dgp,learner=learner,baseline=baseline,
                         comparator="iv_crossfit",direction="crossfit minus baseline",
                         signed_bias_difference=mean_interval([rb["bias"]-ra["bias"] for ra,rb in zip(a,b)]),

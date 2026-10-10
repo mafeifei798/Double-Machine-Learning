@@ -1,4 +1,6 @@
-"""Source-aligned repairs of the original undergraduate DML simulations.
+"""Legacy partialling-out utilities retained for package compatibility.
+
+The selected v3/v6 results use separate IV-type estimators.
 
 The data-generating processes, learner families, and two headline comparisons are
 kept close to the March-April 2026 scripts.  The core estimator restores the
@@ -8,8 +10,6 @@ Robinson partialling-out score already present in the 3 March prototype:
     r = Y - ell_hat(X)
     theta_hat = sum(v * r) / sum(v ** 2)
 
-The module deliberately stays small.  It is an undergraduate simulation, not a
-general causal-inference framework.
 """
 
 from __future__ import annotations

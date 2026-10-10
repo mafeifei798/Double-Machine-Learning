@@ -1,4 +1,4 @@
-"""Ordinary learned-nuisance IV-type comparisons: no constructed bias.
+"""IV-type comparisons with learned nuisance functions.
 
 Adapt the pinned official DoubleML pooled-pilot algorithm to the original
 thesis DGPs/learner settings. Only the final structural IV-type score is DML.

@@ -1,4 +1,4 @@
-"""Two honestly separated IV-score repairs, without oracle training or stress."""
+"""IV-type experiments with ordinary and controlled nuisance learners."""
 from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any
@@ -77,7 +77,11 @@ def controlled_outcome(config, learner, seed):
 
 
 def selection_job(protocol, design, dgp, rep, family, role):
-    """No effect estimate / truth is inspected or returned by selection."""
+    """Score nuisance candidates by validation prediction loss.
+
+    Pilots use training observations only. Causal-effect accuracy and
+    ground-truth quantities are not selection criteria.
+    """
     config = config_for(protocol,design,dgp,True)
     data = fair.draw(config,rep)
     outer = fair.make_fold_ids(config.n,2,fair.seed_for(config.seed,design,dgp,rep,"folds"))
