@@ -15,10 +15,11 @@ import warnings
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'src'))
 from dml_studies import sensitivity as s
 from run_reference import digest,atomic_json
+from execution_guard import require_execution_root
 FILES=('configs/sensitivity.json','configs/moderate_dgp.json','docs/sensitivity_protocol.md',
     'src/dml_studies/sensitivity.py','src/dml_studies/moderate_dgp.py','src/dml_studies/orthogonalization_crossfitting.py',
     'src/dml_studies/doubleml_reference.py','src/dml_studies/iv_score.py','src/dml_studies/__init__.py',
-    'src/dml_studies/partialling_out.py','scripts/run_sensitivity.py','scripts/analyze_sensitivity.py',
+    'src/dml_studies/partialling_out.py','scripts/run_sensitivity.py','scripts/execution_guard.py','scripts/analyze_sensitivity.py',
     'scripts/verify_sensitivity.py','scripts/check_sensitivity_doubleml.py','scripts/check_sensitivity_replay.py',
     'scripts/run_reference.py','scripts/analyze_reference.py','scripts/analyze_moderate_dgp.py','tests/test_sensitivity.py')
 
@@ -71,7 +72,7 @@ def dispatch(p,q,out,sha):
 
 def main():
     a=argparse.ArgumentParser();a.add_argument('mode',choices=('launch','run'));args=a.parse_args()
-    if platform.system()!='Linux' or str(ROOT)!='/data2/lzx/dhy/dml_sensitivity_v6_20261002':raise RuntimeError('authorized server only; local fits prohibited')
+    require_execution_root(ROOT)
     env=dict(os.environ);env.update(PYTHONPATH=str(ROOT/'src'),MPLCONFIGDIR=str(ROOT/'mpl_cache'),
         OPENBLAS_NUM_THREADS='1',OMP_NUM_THREADS='1',MKL_NUM_THREADS='1',CUDA_VISIBLE_DEVICES='',PYTHONDONTWRITEBYTECODE='1')
     if args.mode=='launch':

@@ -107,11 +107,8 @@ Mixed RF / Series OLS is not presented as RF learning both nuisances. Neither
 no-split bias nor cross-fitting superiority is assumed in every finite-sample
 setting; adverse findings are retained.
 
-## Historical execution conditions
+## Execution conditions
 
-Execution used the isolated directory
-`/data2/lzx/dhy/dml_iv_repair_v3_20261002`, 12 CPU worker processes, one thread
-per worker, no GPU, and no local fitting or simulation. The budget allowed one
-development selection and one formal replication universe, without automated
-retries, sample-size expansion, or formal retuning. Faulty tests could be
-corrected, but selected and formal scientific procedures were fixed after launch.
+Execution used 12 CPU worker processes, one thread per worker, and no GPU.
+The selected models and confirmatory procedures were fixed before confirmation;
+formal results were not used to expand sample sizes or retune learners.

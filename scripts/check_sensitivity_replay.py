@@ -3,17 +3,17 @@
 import hashlib
 import json
 from pathlib import Path
-import platform
 import sys
 import warnings
 from threadpoolctl import threadpool_limits
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'src'))
 from dml_studies import sensitivity as s
 from run_sensitivity import filename
+from execution_guard import require_execution_root
 
 
 def main():
-    assert platform.system()=='Linux' and str(ROOT)=='/data2/lzx/dhy/dml_sensitivity_v6_20261002'
+    require_execution_root(ROOT)
     root=ROOT/'output/formal';manifest=json.loads((root/'FROZEN_MANIFEST.json').read_text());identity=manifest['identity']
     for name,digest in identity['source_hashes'].items():assert hashlib.sha256((ROOT/name).read_bytes()).hexdigest()==digest
     checks=[]

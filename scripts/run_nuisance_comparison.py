@@ -17,12 +17,13 @@ ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/"src"))
 from dml_studies import nuisance_comparison as repair
 from run_reference import atomic_json,digest
+from execution_guard import require_execution_root
 
 FILES=("configs/nuisance_comparison.json","docs/nuisance_comparison_protocol.md",
     "src/dml_studies/nuisance_comparison.py","src/dml_studies/doubleml_reference.py",
     "src/dml_studies/iv_score.py","src/dml_studies/__init__.py",
     "src/dml_studies/partialling_out.py","scripts/run_nuisance_comparison.py",
-    "scripts/run_reference.py","scripts/analyze_reference.py",
+    "scripts/run_reference.py","scripts/execution_guard.py","scripts/analyze_reference.py",
     "scripts/analyze_nuisance_comparison.py","scripts/verify_nuisance_comparison.py",
     "scripts/check_nuisance_doubleml.py","tests/test_nuisance_comparison.py",
     "tests/test_doubleml_reference.py","configs/doubleml_reference.json",
@@ -85,8 +86,7 @@ def dispatch(mode,protocol,selections,universe,out,identity,workers):
 
 def main():
     parser=argparse.ArgumentParser(); parser.add_argument("mode",choices=("launch","run")); args=parser.parse_args()
-    if platform.system()!="Linux" or str(ROOT)!="/data2/lzx/dhy/dml_iv_repair_v3_20261002":
-        raise RuntimeError("all fitting/simulation/server tests are server only")
+    require_execution_root(ROOT)
     env=dict(os.environ); env.update(PYTHONPATH=str(ROOT/"src"),MPLCONFIGDIR=str(ROOT/"mpl_cache"),
         OPENBLAS_NUM_THREADS="1",OMP_NUM_THREADS="1",MKL_NUM_THREADS="1",CUDA_VISIBLE_DEVICES="",PYTHONDONTWRITEBYTECODE="1")
     if args.mode=="launch":

@@ -72,19 +72,21 @@ fits no models:
 python -B scripts/check_saved_results.py
 ```
 
-Experiment runners and fitting-based tests target the original Linux research
-environment; the runners retain its guarded execution paths. They are not
-portable launch commands for this checkout. See the study protocols for the
-execution conditions.
+The two main study runners, sensitivity replay, and figure renderer require
+Linux and an explicit `DML_EXECUTION_ROOT` matching the checkout's absolute
+path; they refuse execution when this variable is unset. Historical execution
+also requires the original archives. Fitting-based tests target the original
+Linux research environment. See the study protocols for execution conditions.
 
 This repository contains selected code and saved results, not a turnkey
 replication archive. Full historical verification also requires the original
 per-replication archives and server logs, which are not included.
 
 Saved results are unchanged; their embedded paths refer to historical archives.
-The current source includes naming, import, and documentation changes, while
-numerical procedures, protocol identifiers, seeds, and source-hash checks are
-preserved. Historical byte-level verification requires the frozen source at
+The current source includes naming, import, documentation, and execution-root
+configuration changes; numerical procedures, protocol identifiers, seeds, and
+source-hash checks are preserved. Historical byte-level verification requires
+the frozen source at
 [this commit](https://github.com/mafeifei798/Double-Machine-Learning/tree/d8aea4bebe87399232be710464a0afc62784b1df).
 
 No license has been assigned.

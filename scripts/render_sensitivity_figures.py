@@ -3,12 +3,11 @@
 import hashlib
 import json
 from pathlib import Path
-import platform
 import sys
+from execution_guard import require_execution_root
 
 ROOT = Path(__file__).resolve().parents[1]
-if platform.system() != 'Linux' or str(ROOT) != '/data2/lzx/dhy/dml_sensitivity_v6_20261002':
-    raise RuntimeError('render on authorized server; no scientific rerun')
+require_execution_root(ROOT)
 sys.path.insert(0, str(ROOT / 'src'))
 import matplotlib
 matplotlib.use('Agg')
