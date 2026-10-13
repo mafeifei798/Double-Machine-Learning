@@ -16,7 +16,7 @@ ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'src'))
 from dml_studies import sensitivity as s
 from run_reference import digest,atomic_json
 from execution_guard import require_execution_root
-FILES=('configs/sensitivity.json','configs/moderate_dgp.json','docs/sensitivity_protocol.md',
+FILES=('configs/sensitivity.json','configs/moderate_dgp.json',
     'src/dml_studies/sensitivity.py','src/dml_studies/moderate_dgp.py','src/dml_studies/orthogonalization_crossfitting.py',
     'src/dml_studies/doubleml_reference.py','src/dml_studies/iv_score.py','src/dml_studies/__init__.py',
     'src/dml_studies/partialling_out.py','scripts/run_sensitivity.py','scripts/execution_guard.py','scripts/analyze_sensitivity.py',

@@ -19,7 +19,7 @@ from dml_studies import nuisance_comparison as repair
 from run_reference import atomic_json,digest
 from execution_guard import require_execution_root
 
-FILES=("configs/nuisance_comparison.json","docs/nuisance_comparison_protocol.md",
+FILES=("configs/nuisance_comparison.json",
     "src/dml_studies/nuisance_comparison.py","src/dml_studies/doubleml_reference.py",
     "src/dml_studies/iv_score.py","src/dml_studies/__init__.py",
     "src/dml_studies/partialling_out.py","scripts/run_nuisance_comparison.py",

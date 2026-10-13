@@ -63,7 +63,7 @@ def main() -> None:
         ROOT / "src/dml_studies/iv_score.py",
         ROOT / "src/dml_studies/__init__.py", ROOT / "src/dml_studies/partialling_out.py",
         Path(__file__).resolve(),
-        ROOT / "scripts/analyze_reference.py", ROOT / "docs/doubleml_reference_protocol.md",
+        ROOT / "scripts/analyze_reference.py",
         ROOT / "tests/test_doubleml_reference.py",
         *sorted((ROOT / "legacy_snapshot").glob("*.py")),
     ]

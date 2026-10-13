@@ -1,92 +1,59 @@
 # Double Machine Learning for Causal Effect Estimation
 
-Simulation studies of IV-type Double Machine Learning with Lasso, Random Forest,
-and XGBoost, together with a Series OLS / decision-tree analysis of training-data
-reuse. The studies examine orthogonalization, cross-fitting, and sensitivity to
-sample size, fold count, and learner regularization.
+## Overview
 
-University of Macau undergraduate research project | Feb-Jun 2026.
+Simulation studies of orthogonalization, cross-fitting, and nuisance-model
+selection for estimating the constant treatment effect in a partially linear
+model, `Y = theta * D + g(X) + error`.
 
-Saved results retain their original execution identifiers and provenance.
+## Methods
 
-## Code and saved results
+- IV-type orthogonal score: `(D - m(X)) * (Y - theta * D - g(X))`.
+- Lasso, Random Forest, and XGBoost nuisance estimators with training-only pilots.
+- Matched model-bank comparisons isolate training-data reuse from cross-fitting.
+- A Series OLS / decision-tree study examines the role of nuisance specification.
+- Sensitivity analysis varies sample size, fold count, and regularization, with
+  paired MAE/MSE tests, Holm correction, coverage, and error decomposition.
 
-Estimators and study definitions: [src/dml_studies](src/dml_studies).
-Configurations: [configs](configs). Execution and validation: [scripts](scripts).
-The [study protocols](docs) specify the designs and interpretation boundaries.
+Implementations are in [src](src/dml_studies), study settings in [configs](configs),
+and execution, analysis, and validation programs in [scripts](scripts).
 
-| Study | Saved JSON summaries and figures |
-| --- | --- |
-| Main three-learner study and sensitivity analysis | [600-cell summary](results/sensitivity/summary.json), [sensitivity plots](results/sensitivity/figures), [moderate-DGP histograms](results/sensitivity/distributions) |
-| Nuisance-learner comparison, including Series OLS / decision-tree reuse | [summary and figures](results/nuisance_comparison) |
+## Results
 
-Earlier estimator modules remain only as dependencies of the retained studies.
+The moderate-DGP comparison uses `n=1,000`, `p=20`, true effect `0.5`, two folds,
+and 200 paired Monte Carlo repetitions in each of six learner-by-DGP settings.
+The metric is the equal-weight average of absolute Monte Carlo mean bias across
+these six settings, not MAE or the average of setting-specific percentages.
 
-## Selected measurements
-
-The main comparison uses the prespecified moderate-DGP anchor: n=1,000, p=20,
-true effect 0.5, two folds, baseline hyperparameters, and 200 paired Monte Carlo
-repetitions per cell. Each comparison weights six learner-by-DGP cells equally.
-
-| Comparison | Comparator absolute MC mean bias | DML / cross-fit | Reduction |
+| Comparison | Before | After | Bias reduction |
 | --- | ---: | ---: | ---: |
-| Non-orthogonal ML vs IV-type DML | 0.0365543 | 0.00387464 | 89.4% |
+| Non-orthogonal ML vs DML | 0.0365543 | 0.00387464 | 89.4% |
 | Full-sample no-split vs cross-fitting | 0.255777 | 0.00648017 | 97.5% |
 
-The metric is the six-cell average of abs(mean(theta_hat) - 0.5), not MAE or
-an average of cellwise percentage improvements or a full-grid aggregate.
+The Series OLS / decision-tree study has eight cross-fit settings with maximum
+absolute Monte Carlo mean bias below 0.0046.
 
-The correctly specified Series OLS treatment learner / decision-tree outcome
-learner study spans two DGPs and four leaf sizes. Its eight cross-fit settings
-have maximum absolute MC mean bias 0.00457467; this is not an exact-unbiasedness
-guarantee or a bound on individual estimates.
+- [Sensitivity results](results/sensitivity/summary.json), including all 600
+  summary cells, adverse findings, and paired comparisons.
+- [Nuisance-learner results](results/nuisance_comparison/summary.json) and
+  [paired comparisons](results/nuisance_comparison/paired_comparisons.json).
+- Figures: [sensitivity](results/sensitivity/figures),
+  [estimator distributions](results/sensitivity/distributions), and
+  [Series OLS / decision-tree comparisons](results/nuisance_comparison).
 
-## Evaluation scope and limitations
+These studies use known low-dimensional, monotonic treatment structure, with
+learned rather than oracle nuisances. Bias reductions are specific to the stated
+comparison and do not imply uniformly lower error or valid interval coverage;
+minimum cross-fit coverage across the sensitivity grid is 87.5%.
 
-- The three-learner studies learn both nuisance channels. Known low-dimensional
-  treatment candidates and monotone DGP structure are disclosed design controls.
-- Matched reuse and cross-fit arms share fitted model banks, training sizes,
-  targets, pilots, and random states; prediction membership changes.
-- Sensitivity covers n=300/1,000/3,000, two/five folds, and four one-role-at-a-time
-  hyperparameter alternatives at n=1,000 with two folds, not a full factorial.
-- Retained summaries include paired Holm-adjusted MAE/MSE tests, error
-  decompositions, and adverse findings. Linear RF retains residual mean bias
-  around +0.01275 at the moderate anchor; linear Lasso MAE rises from about
-  0.02800 to 0.03051 in one no-split/cross-fit comparison. Minimum cross-fit
-  coverage in the sensitivity grid is 87.5%.
-- Bias reduction does not imply uniformly lower total error, universal
-  unbiasedness, or uniformly valid confidence intervals.
-
-## Install and verify saved results
-
-Python 3.10 or newer is required to install the package:
+## Run
 
 ```bash
 python -m pip install -e '.[test]'
-```
-
-The following standard-library-only check needs no package installation and
-fits no models:
-
-```bash
 python -B scripts/check_saved_results.py
 ```
 
-The two main study runners, sensitivity replay, and figure renderer require
-Linux and an explicit `DML_EXECUTION_ROOT` matching the checkout's absolute
-path; they refuse execution when this variable is unset. Historical execution
-also requires the original archives. Fitting-based tests target the original
-Linux research environment. See the study protocols for execution conditions.
-
-This repository contains selected code and saved results, not a turnkey
-replication archive. Full historical verification also requires the original
-per-replication archives and server logs, which are not included.
-
-Saved results are unchanged; their embedded paths refer to historical archives.
-The current source includes naming, import, documentation, and execution-root
-configuration changes; numerical procedures, protocol identifiers, seeds, and
-source-hash checks are preserved. Historical byte-level verification requires
-the frozen source at
-[this commit](https://github.com/mafeifei798/Double-Machine-Learning/tree/d8aea4bebe87399232be710464a0afc62784b1df).
-
-No license has been assigned.
+The saved-result check fits no models. The two main study runners require Linux and an
+explicit `DML_EXECUTION_ROOT` matching the checkout. Full historical replay
+additionally needs the original per-replication archives and frozen source;
+this repository provides selected code and numerical summaries, not those archives.
