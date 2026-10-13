@@ -6,3 +6,9 @@ __pycache__/
 *.tgz
 *.tar.gz
 *.log
+
+# Published, hash-pinned saved evidence; unpacked copies are reproducible.
+!evidence/completion_results_v7.tgz
+!evidence/server_source_v7.tgz
+evidence/bridge/
+evidence/v6_selected/

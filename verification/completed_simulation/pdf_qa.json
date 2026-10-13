@@ -1,0 +1,36 @@
+{
+  "status": "PASS_FINAL_DOCUMENT_QA",
+  "pdf_sha256": "d3cd0ae58dc35b5f46f6726f57e9a15bf8ed1542ea611e61cd8c9f7cf5d11d14",
+  "pages": 18,
+  "tables_present": 8,
+  "primary_figure_captions_present": 6,
+  "all_46_table_and_figure_assets_valid": true,
+  "local_gallery_links_checked": 60,
+  "no_replacement_or_black_box_glyphs": true,
+  "complete_visual_review_pages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18
+  ],
+  "final_render_changed_pages": [
+    18
+  ],
+  "remaining_pages_pixel_identical_to_reviewed_render": 17,
+  "unrelated_original_pdf_modified": false,
+  "model_fits": 0
+}

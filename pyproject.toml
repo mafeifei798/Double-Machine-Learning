@@ -13,6 +13,7 @@ dependencies = [
 
 [project.optional-dependencies]
 test = ["pytest==8.3.4"]
+reports = ["matplotlib>=3.8", "reportlab>=4", "pypdf>=4"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

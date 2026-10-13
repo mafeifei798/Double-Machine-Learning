@@ -16,7 +16,7 @@ model, `Y = theta * D + g(X) + error`.
   paired MAE/MSE tests, Holm correction, coverage, and error decomposition.
 
 Implementations are in [src](src/dml_studies), with execution and numerical
-analysis in [scripts](scripts). The three [configuration files](configs) record
+analysis in [scripts](scripts). The [configuration files](configs) record
 the DGP and learner parameters, nuisance comparison, and sensitivity grid.
 
 ## Results
@@ -70,5 +70,52 @@ python scripts/run_nuisance_comparison.py --help
 Unit tests use small synthetic inputs. The two study runners require Linux
 and an explicit `DML_EXECUTION_ROOT`
 matching the checkout. Full historical replay additionally needs the original
-per-replication archives and frozen source; this repository provides the selected
-study implementations and complete numerical summaries, not those archives.
+per-replication archives and frozen source. This repository provides complete
+numerical summaries and the explicitly selected raw records described below,
+not the full historical v6 archive.
+
+## Completed legacy-style simulation chapter
+
+- [Corrected simulation chapter (PDF)](output/pdf/Simulation_Completed.pdf)
+- [All restored tables, figures, formulas, and extension gallery](results/legacy_report/index.html)
+- [Saved numerical results](results/legacy_report/summary.json)
+- [Hash, pairing, and source verification](results/legacy_report/verification.json)
+- [All six primary figures](results/legacy_report/figures),
+  [eight report-style tables](results/legacy_report/tables), and
+  [32 retained extension figures](results/legacy_report/extensions)
+- [Archived records and source hashes](evidence/completed_simulation_manifest.json)
+- [Saved-record reproduction instructions](REPRODUCE.txt)
+
+GitHub displays the PNGs and PDF directly. Download the repository and open
+`results/legacy_report/index.html` for the offline gallery with formulas,
+native tables, and the complete sensitivity and nuisance-study summaries.
+
+| Restored comparison | Linear | Nonlinear | Protocol |
+| --- | --- | --- | --- |
+| Non-orthogonal ML / DML histograms | [Figure 1](results/legacy_report/figures/figure_1_orthogonalization_linear.png) | [Figure 2](results/legacy_report/figures/figure_2_orthogonalization_nonlinear.png) | Raw errors; n=500, K=2, R=300 |
+| Learner sensitivity | [Figure 3](results/legacy_report/figures/figure_3_learner_sensitivity_linear.png) | [Figure 4](results/legacy_report/figures/figure_4_learner_sensitivity_nonlinear.png) | Mean +/- 1.96 MC SD; sampling spread, not a mean CI |
+| Full no-split / cross-fitting histograms | [Figure 5](results/legacy_report/figures/figure_5_crossfitting_linear.png) | [Figure 6](results/legacy_report/figures/figure_6_crossfitting_nonlinear.png) | Studentized errors; n=300, K=2, R=200 |
+
+The restored Tables 1-4 / Figures 1-4 use a fixed server-only `n=500`, `K=2`,
+`R=300` bridge with the repaired structural IV target. Tables 5-6 / Figures 5-6
+reuse the existing baseline `n=300`, `K=2`, `R=200` receipts without fitting.
+Tables 7-8 retain equal-training-size shared-bank comparisons. The report
+separates the two baseline DGPs, corrects structural `g` versus outcome `ell`,
+and labels MC sampling spread separately from confidence intervals.
+
+The bridge is complete: do not relaunch it. Local report building and the
+stdlib-only saved-record verifier perform no ML fitting. The evidence archives
+include all 600 bridge jobs and the 400 selected v6 jobs, with frozen source and
+hash ledgers; no historical raw record was edited. Extract and audit them using
+`REPRODUCE.txt` without installing or running any ML learner.
+
+All pre-existing results remain at their original paths. The moderate-DGP
+headline numbers above are unchanged and are not pooled with the new n=500
+bridge. Adverse findings, residual finite-sample bias, and coverage shortfalls
+remain visible in the full summaries and extension figures. The n=500 linear
+Lasso case reduces absolute mean bias but has slightly higher MAE and RMSE;
+the chapter does not claim uniform finite-sample unbiasedness or dominance.
+
+The earlier [curated evidence snapshot](https://github.com/mafeifei798/Double-Machine-Learning/tree/ae6c92b40eb1556e36aa59cc406595aef1105e4f)
+is also retained in repository history. Its historical studies remain separate
+from this completed chapter and the current headline comparison.
