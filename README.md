@@ -34,6 +34,20 @@ these six settings, not MAE or the average of setting-specific percentages.
 The Series OLS / decision-tree study has eight cross-fit settings with maximum
 absolute Monte Carlo mean bias below 0.0046.
 
+Key figures:
+
+- Non-orthogonal ML vs DML: [linear](results/sensitivity/distributions/moderate_figure1_linear_naive_ml_hist.png)
+  and [nonlinear](results/sensitivity/distributions/moderate_figure1_nonlinear_naive_ml_hist.png).
+- Full-sample no-split vs cross-fitting: [linear](results/sensitivity/distributions/moderate_figure2_linear_full_no_split_hist.png)
+  and [nonlinear](results/sensitivity/distributions/moderate_figure2_nonlinear_full_no_split_hist.png).
+- Series OLS / decision-tree comparison: [linear](results/nuisance_comparison/controlled_figure2_linear.png)
+  and [nonlinear](results/nuisance_comparison/controlled_figure2_nonlinear.png).
+- Sensitivity: [sample size and folds — bias](results/sensitivity/figures/moderate_figure2_sample_fold_bias.png)
+  and [regularization — interval coverage](results/sensitivity/figures/moderate_figure2_parameters_coverage.png).
+
+Histograms show studentized estimation errors; panel annotations report mean
+bias on the original scale. The plot label `naive_ml` denotes non-orthogonal ML.
+
 - [Sensitivity results](results/sensitivity/summary.json), including all 600
   summary cells, adverse findings, and paired comparisons.
 - [Nuisance-learner results](results/nuisance_comparison/summary.json) and
