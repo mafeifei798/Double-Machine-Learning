@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 import numpy as np
 from scipy import stats
-from analyze_reference import digest,mean_interval,wilson
+from study_utils import digest,mean_interval,wilson
 
 ROOT=Path(__file__).resolve().parents[1]
 
@@ -69,73 +69,8 @@ def analyze():
                 absolute_mean_bias_difference=abs(np.mean([b["bias"] for b in cf]))-abs(np.mean([a["bias"] for a in other]))))
     (out/"summary.json").write_text(json.dumps(summaries,indent=2,allow_nan=False))
     (out/"paired_contrasts.json").write_text(json.dumps(contrasts,indent=2,allow_nan=False))
-    report=["# IV-Type Nuisance-Learner Comparison: Independent Confirmation", "",
-        "Original four DGPs; n=1000; two folds; all replications and all methods retained.",
-        "Controlled Series OLS treatment nuisance is correctly specified. Mixed RF outcome / Series OLS m is NOT pure RF.",
-        "Ordinary RF/XGB/Lasso fit both nuisances using prediction-selected parameters and a training-only rich-series pilot.",
-        "All final DML estimates use structural IV-type score. No artificial pressure or oracle training.", "",
-        "Practical-zero support means the entire MC95 mean-bias interval is inside the prespecified ±0.01 margin; not exact unbiasedness.",
-        "Bias detection (interval excludes zero) and practical equivalence answer different questions; both may be true.",
-        "Coverage uses usual asymptotic IV-score standard errors; No-split intervals are descriptive, not guaranteed valid.", "",
-        "| Design | DGP | Track | Learner | Method | R | Mean | Bias [MC95] | RMSE | Coverage | Practical zero |",
-        "|---|---|---|---|---|---:|---:|---|---:|---:|---|"]
-    for s in summaries:
-        b=s["bias"]
-        report.append(f"| {s['design']} | {s['dgp']} | {s['track']} | {s['learner']} | {s['method']} | {s['R']} | {s['mean_theta']:.6f} | {b['mean']:+.6f} [{b['low']:+.6f},{b['high']:+.6f}] | {s['rmse']:.6f} | {s['coverage']['rate']:.3f} | {s['practical_zero_supported']} |")
-    report += ["",f"Replications: {len(ledger)}; estimates: {len(rows)}; failures: {len(failed)}; warnings: {len(warnings)}.",
-        "All paired contrasts and weighted decompositions remain in JSON, including adverse outcomes.",
-        "No formal outcome is used for learner/parameter selection. Historical runs are unchanged."]
-    (out/"RESULTS.md").write_text("\n".join(report)+"\n")
-    plot(out,grouped,summaries)
     (out/"ANALYSIS_LEDGER.json").write_text(json.dumps({p.name:digest(p) for p in out.iterdir() if p.is_file() and p.name!="ANALYSIS_LEDGER.json"},indent=2))
     print(json.dumps(dict(replications=len(ledger),estimates=len(rows),summary_cells=len(summaries),failures=len(failed),warnings=len(warnings)),indent=2))
-
-
-def plot(out,grouped,summaries):
-    import matplotlib
-    matplotlib.use("Agg")
-    import matplotlib.pyplot as plt
-    lookup={(s["design"],s["dgp"],s["track"],s["learner"],s["method"]):s for s in summaries}
-    def histogram(design,dgp,track,learners,left,filename,heading):
-        fig,axes=plt.subplots(len(learners),2,figsize=(12,3.3*len(learners)+1),squeeze=False)
-        for i,learner in enumerate(learners):
-            values=[np.array([r["bias"]/r["se"] for r in grouped[(design,dgp,track,learner,m)]]) for m in (left,"crossfit")]
-            lo=min(-4.,*(float(v.min()) for v in values)); hi=max(4.,*(float(v.max()) for v in values))
-            bins=np.linspace(lo-.1,hi+.1,37); x=np.linspace(lo,hi,600)
-            for j,method in enumerate((left,"crossfit")):
-                ax=axes[i,j]; ax.hist(values[j],bins=bins,density=True,color="steelblue",edgecolor="white",alpha=.8)
-                ax.plot(x,stats.norm.pdf(x),color="red",label="N(0,1)"); ax.axvline(0,color="black",linewidth=.8)
-                ax.set_xlim(lo-.1,hi+.1); ax.legend(fontsize=8)
-                s=lookup[(design,dgp,track,learner,method)]
-                ax.set_title(f"{learner} | {method}\nmean={s['mean_theta']:.4f}; bias={s['bias']['mean']:+.4f}; coverage={s['coverage']['rate']:.3f}")
-                ax.set_xlabel("(estimate - true effect) / estimated SE"); ax.set_ylabel("Density")
-        fig.suptitle(f"{heading}\n{design}, {dgp}, true effect=0.5, n=1000; all replications retained",fontsize=12)
-        fig.tight_layout(rect=(0,0,1,.92 if len(learners)==1 else .96)); fig.savefig(out/filename,dpi=160); plt.close(fig)
-    for dgp in ("linear","nonlinear"):
-        histogram("figure1",dgp,"ordinary",("rf","xgb","lasso"),"nonorthogonal_crossfit",
-            f"ordinary_figure1_{dgp}.png","Prediction-selected RF/XGB/Lasso BOTH nuisances; rich-series training pilot")
-        histogram("figure2",dgp,"ordinary",("rf","xgb","lasso"),"full_no_split",
-            f"ordinary_figure2_{dgp}.png","Ordinary learned nuisances; no injected overfitting")
-        histogram("figure2",dgp,"ordinary",("rf","xgb","lasso"),"equal_train_reuse",
-            f"ordinary_equal_training_{dgp}.png","Exact same 500-row model bank; reuse vs held-out prediction")
-        histogram("figure1",dgp,"controlled",("series_ols",),"outcome_mismatch_crossfit",
-            f"controlled_figure1_{dgp}.png","Controlled correctly specified Series OLS; mismatch vs structural IV")
-        histogram("figure2",dgp,"controlled",tuple(f"tree_leaf_{l}" for l in (2,5,10,20)),"full_no_split",
-            f"controlled_figure2_{dgp}.png","Genuine Decision Tree outcome; correctly specified Series OLS m")
-        histogram("figure2",dgp,"controlled",("rf_outcome_series_m",),"full_no_split",
-            f"mixed_rf_series_{dgp}.png","Mixed learner sensitivity: RF outcome + Series OLS m, NOT pure RF")
-    for track in ("ordinary","controlled"):
-        subset=[s for s in summaries if s["track"]==track and s["method"] in ("full_no_split","equal_train_reuse","crossfit")]
-        labels=sorted({(s["design"],s["dgp"],s["learner"]) for s in subset})
-        fig,ax=plt.subplots(figsize=(11,max(5,len(labels)*.45)))
-        for offset,method,color in ((-.18,"full_no_split","gray"),(0,"equal_train_reuse","orange"),(.18,"crossfit","steelblue")):
-            cells=[lookup[(*key[:2],track,key[2],method)] for key in labels]
-            means=np.array([s["bias"]["mean"] for s in cells]); low=np.array([s["bias"]["low"] for s in cells]); high=np.array([s["bias"]["high"] for s in cells])
-            ax.errorbar(means,np.arange(len(labels))+offset,xerr=np.vstack((means-low,high-means)),fmt="o",color=color,label=method,capsize=2)
-        ax.axvspan(-.01,.01,color="green",alpha=.08,label="prespecified practical-zero margin")
-        ax.axvline(0,color="black",linewidth=.8); ax.set_yticks(np.arange(len(labels)),[" / ".join(k) for k in labels])
-        ax.set_xlabel("Signed mean bias, Monte Carlo 95% interval"); ax.set_title(f"{track}: all IV comparisons, n=1000")
-        ax.legend(fontsize=8); fig.tight_layout(); fig.savefig(out/f"bias_{track}.png",dpi=160); plt.close(fig)
 
 
 if __name__=="__main__": analyze()

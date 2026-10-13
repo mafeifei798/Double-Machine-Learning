@@ -16,19 +16,15 @@ import warnings
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/"src"))
 from dml_studies import nuisance_comparison as repair
-from run_reference import atomic_json,digest
+from study_utils import atomic_json,digest
 from execution_guard import require_execution_root
 
 FILES=("configs/nuisance_comparison.json",
     "src/dml_studies/nuisance_comparison.py","src/dml_studies/doubleml_reference.py",
     "src/dml_studies/iv_score.py","src/dml_studies/__init__.py",
-    "src/dml_studies/partialling_out.py","scripts/run_nuisance_comparison.py",
-    "scripts/run_reference.py","scripts/execution_guard.py","scripts/analyze_reference.py",
-    "scripts/analyze_nuisance_comparison.py","scripts/verify_nuisance_comparison.py",
-    "scripts/check_nuisance_doubleml.py","tests/test_nuisance_comparison.py",
-    "tests/test_doubleml_reference.py","configs/doubleml_reference.json",
-    "legacy_snapshot/figure1_doubleml_docs_style_20260421.py",
-    "legacy_snapshot/figure2_compare_learners_common_20260412.py")
+    "scripts/run_nuisance_comparison.py","scripts/execution_guard.py",
+    "scripts/analyze_nuisance_comparison.py","scripts/study_utils.py",
+    "tests/conftest.py","tests/test_nuisance_comparison.py","pyproject.toml")
 
 
 def once(path,value):
@@ -37,11 +33,9 @@ def once(path,value):
 
 
 def environment():
-    import numpy,scipy,sklearn,xgboost,doubleml
-    import doubleml.plm.plr as plr
+    import numpy,scipy,sklearn,xgboost
     return dict(python=platform.python_version(),numpy=numpy.__version__,scipy=scipy.__version__,
-        sklearn=sklearn.__version__,xgboost=xgboost.__version__,doubleml=doubleml.__version__,
-        doubleml_plr_sha256=digest(Path(plr.__file__)))
+        sklearn=sklearn.__version__,xgboost=xgboost.__version__)
 
 
 def task(mode,protocol,selections,key):
@@ -105,11 +99,9 @@ def main():
         sha=hashlib.sha256(json.dumps(identity,sort_keys=True).encode()).hexdigest()
         once(ROOT/"SOURCE_FROZEN.json",dict(identity=identity,identity_sha256=sha,at=time.time()))
         with (ROOT/"SERVER_PREFLIGHT.log").open("x") as log:
-            check=subprocess.run([sys.executable,"-m","pytest","tests/test_nuisance_comparison.py","tests/test_doubleml_reference.py","-q"],env=env,cwd=ROOT,stdout=log,stderr=subprocess.STDOUT)
+            check=subprocess.run([sys.executable,"-m","pytest","tests/test_nuisance_comparison.py","-q"],env=env,cwd=ROOT,stdout=log,stderr=subprocess.STDOUT)
         once(ROOT/"SERVER_PREFLIGHT.json",dict(returncode=check.returncode,log_sha256=digest(ROOT/"SERVER_PREFLIGHT.log")))
         if check.returncode: raise RuntimeError("preflight failed; selection/formal not launched")
-        with (ROOT/"DOUBLEML_CHECK.json").open("x") as output:
-            subprocess.run([sys.executable,"scripts/check_nuisance_doubleml.py"],env=env,cwd=ROOT,stdout=output,check=True)
         universe=[(d,g,r,l,role) for d in ("figure1","figure2") for g in ("linear","nonlinear")
             for r in range(protocol["development_replications_per_cell"]) for l in protocol["ordinary_families"] for role in ("m","g")]
         selection=ROOT/"output/selection"
@@ -129,18 +121,15 @@ def main():
             warnings=receipt_warnings,selection_uses="observed_validation_prediction_loss_only",
             source_identity_sha256=sha,at=time.time()))
         formal=ROOT/"output/formal"; formal.mkdir(parents=True,exist_ok=True)
-        formal_identity={**identity,"selection_sha256":digest(selection/"SELECTED.json"),"selected":selected,
-            "doubleml_check_sha256":digest(ROOT/"DOUBLEML_CHECK.json")}
+        formal_identity={**identity,"selection_sha256":digest(selection/"SELECTED.json"),"selected":selected}
         formal_sha=hashlib.sha256(json.dumps(formal_identity,sort_keys=True).encode()).hexdigest()
         once(formal/"FROZEN_MANIFEST.json",dict(identity=formal_identity,identity_sha256=formal_sha,at=time.time()))
         universe=[(d,g,r) for d in ("figure1","figure2") for g in ("linear","nonlinear") for r in range(protocol["replications"][d])]
         dispatch("formal",protocol,selected,universe,formal,formal_sha,protocol["workers"])
         subprocess.run([sys.executable,"scripts/analyze_nuisance_comparison.py"],env=env,cwd=ROOT,check=True)
-        with (ROOT/"INDEPENDENT_VERIFICATION.json").open("x") as output:
-            subprocess.run([sys.executable,"scripts/verify_nuisance_comparison.py"],env=env,cwd=ROOT,stdout=output,check=True)
         code=0
     finally: once(ROOT/"SERVER_EXIT.json",dict(returncode=code,at=time.time(),pid=os.getpid()))
-    print("COMPLETE_VERIFIED",flush=True)
+    print("COMPLETE",flush=True)
 
 
 if __name__=="__main__": main()

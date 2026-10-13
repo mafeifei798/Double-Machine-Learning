@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Full unfiltered sensitivity summaries, paired contrasts and plots."""
+"""Unfiltered sensitivity summaries and paired Monte Carlo contrasts."""
 from collections import defaultdict
 import json
 from pathlib import Path
@@ -8,9 +8,7 @@ import numpy as np
 from scipy import stats
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'src'))
 from dml_studies import orthogonalization_crossfitting as base
-from analyze_reference import mean_interval,wilson
-from analyze_moderate_dgp import improvement_p,holm
-from run_reference import atomic_json,digest
+from study_utils import mean_interval,wilson,improvement_p,holm,atomic_json,digest
 from run_sensitivity import universe,filename
 FIELDS=('level','design','dgp','n','k_folds','preset','learner','method')
 FACTOR_FIELDS={'bias':'bias_change','abs_error':'mae_change','squared_error':'mse_change','covers':'coverage_change',
@@ -44,54 +42,6 @@ def factor_row(axis,key,a,b,label):
             c[name+'_p']=float(stats.binomtest(left,left+right,.5).pvalue) if left+right else 1.
         else:c[name+'_p']=two_sided(delta)
     return c
-
-
-def plot_grid(summaries,p,out,level,design,axis,metric):
-    import matplotlib.pyplot as plt
-    methods=base.methods(design);colors={'naive_ml':'#dc8b20','full_no_split':'#dc8b20','equal_train_reuse':'#8860b0','dml_crossfit':'#2677b5'}
-    fig,axes=plt.subplots(2,3,figsize=(13,7),layout='constrained')
-    for i,dgp in enumerate(('linear','nonlinear')):
-        for j,family in enumerate(p['learners']):
-            ax=axes[i,j]
-            for method in methods:
-                if axis=='sample_fold':
-                    for k in p['fold_counts']:
-                        selected=[next(s for s in summaries if (s['level'],s['design'],s['dgp'],s['learner'],s['method'],s['preset'],s['n'],s['k_folds'])==(level,design,dgp,family,method,'base',n,k)) for n in p['sample_sizes']]
-                        x=np.arange(len(selected));label=f'{method}, K={k}';style='-' if k==2 else '--'
-                        y=[s['bias']['mean'] if metric=='bias' else s['coverage']['rate'] if metric=='coverage' else s['rmse'] for s in selected]
-                        ax.plot(x,y,style,marker='o',markersize=4,color=colors[method],label=label)
-                        if metric in ('bias','coverage'):
-                            low=[s[metric]['low'] for s in selected];high=[s[metric]['high'] for s in selected]
-                            ax.fill_between(x,low,high,color=colors[method],alpha=.08)
-                    ax.set_xticks(x,p['sample_sizes']);ax.set_xlabel('n (K=5 also changes training fraction)')
-                else:
-                    selected=[next(s for s in summaries if (s['level'],s['design'],s['dgp'],s['learner'],s['method'],s['preset'],s['n'],s['k_folds'])==(level,design,dgp,family,method,preset,p['anchor_n'],p['anchor_k'])) for preset in p['presets']]
-                    x=np.arange(len(selected));y=[s['bias']['mean'] if metric=='bias' else s['coverage']['rate'] if metric=='coverage' else s['rmse'] for s in selected]
-                    ax.plot(x,y,'-o',markersize=4,color=colors[method],label=method)
-                    if metric in ('bias','coverage'):ax.fill_between(x,[s[metric]['low'] for s in selected],[s[metric]['high'] for s in selected],color=colors[method],alpha=.08)
-                    ax.set_xticks(x,['base','out weak','out strong','m weak','m strong'],rotation=25,ha='right');ax.set_xlabel('one-role-at-a-time presets')
-            if metric=='bias':ax.axhline(0,color='black',lw=.7);ax.axhspan(-.01,.01,color='green',alpha=.1)
-            if metric=='coverage':ax.axhline(.95,color='black',lw=.7,ls=':');ax.set_ylim(-.03,1.03)
-            ax.set_title(f'{dgp} | {family.upper()}');ax.set_ylabel(metric);ax.grid(alpha=.15)
-    axes[0,0].legend(fontsize=6)
-    fig.suptitle(f'{level} | {design} | R={p["replications"]} | {axis} | individual intervals; controlled treatment inputs')
-    name=f'{level}_{design}_{axis}_{metric}.png';fig.savefig(out/name,dpi=170);plt.close(fig);return name
-
-
-def plot_hist(groups,p,out,design,dgp,left):
-    import matplotlib.pyplot as plt
-    fig,axes=plt.subplots(3,2,figsize=(12,11),layout='constrained')
-    for i,family in enumerate(p['learners']):
-        pair=[groups[('moderate',design,dgp,1000,2,'base',family,m)] for m in (left,'dml_crossfit')]
-        errors=[np.array([r['bias']/r['se'] for r in g]) for g in pair]
-        lo=min(-4.,*(float(z.min()) for z in errors));hi=max(4.,*(float(z.max()) for z in errors));edges=np.linspace(lo,hi,41);grid=np.linspace(lo,hi,1200)
-        for j,(g,z,method) in enumerate(zip(pair,errors,(left,'dml_crossfit'))):
-            ax=axes[i,j];ax.hist(z,bins=edges,density=True,color='#3675b5',alpha=.78,edgecolor='white',linewidth=.3)
-            ax.plot(grid,stats.norm.pdf(grid),color='#c63838',lw=1.6,label='N(0,1)');ax.axvline(0,color='black',lw=.7,alpha=.5)
-            b=mean_interval([r['bias'] for r in g]);ax.set_title(f'{family.upper()} | {method}\nBias {b["mean"]:+.4f}; MC95 [{b["low"]:+.4f}, {b["high"]:+.4f}]',fontsize=10)
-            ax.set_xlim(lo,hi);ax.set_xlabel('(estimate - .5) / estimated SE');ax.set_ylabel('Density');ax.legend(fontsize=8)
-    fig.suptitle(f'Independent sensitivity anchor | moderate {design}/{dgp} | n=1000, K=2, R=200')
-    name=f'moderate_{design}_{dgp}_{left}_hist.png';fig.savefig(out/name,dpi=170);plt.close(fig);return name
 
 
 def main():
@@ -141,18 +91,7 @@ def main():
         summaries=summaries,method_contrasts=contrasts,factor_contrasts=factors,warnings=warnings,failures=0,
         individual_cell_intervals=True,method_holm_family_size=len(contrasts),parameter_grid_not_full_factorial=True,
         full_no_split_k_aliases=True,rf_figure2_weak_outcome_alias=True))
-    import matplotlib
-    matplotlib.use('Agg')
-    figures=[]
-    for level in p['levels']:
-        for design in ('figure1','figure2'):
-            for axis in ('sample_fold','parameters'):
-                for metric in ('bias','rmse','coverage'):figures.append(plot_grid(summaries,p,out,level,design,axis,metric))
-    for design in ('figure1','figure2'):
-        for dgp in ('linear','nonlinear'):
-            for left in base.methods(design)[:-1]:figures.append(plot_hist(groups,p,out,design,dgp,left))
-    atomic_json(out/'FIGURE_LEDGER.json',{name:digest(out/name) for name in figures})
-    print(json.dumps(dict(status='ANALYZED',estimates=len(rows),summary_cells=len(summaries),method_contrasts=len(contrasts),factor_contrasts=len(factors),figures=len(figures))))
+    print(json.dumps(dict(status='ANALYZED',estimates=len(rows),summary_cells=len(summaries),method_contrasts=len(contrasts),factor_contrasts=len(factors))))
 
 
 if __name__=='__main__':main()

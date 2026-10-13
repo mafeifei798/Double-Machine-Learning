@@ -15,8 +15,9 @@ model, `Y = theta * D + g(X) + error`.
 - Sensitivity analysis varies sample size, fold count, and regularization, with
   paired MAE/MSE tests, Holm correction, coverage, and error decomposition.
 
-Implementations are in [src](src/dml_studies), study settings in [configs](configs),
-and execution, analysis, and validation programs in [scripts](scripts).
+Implementations are in [src](src/dml_studies), with execution and numerical
+analysis in [scripts](scripts). The three [configuration files](configs) record
+the DGP and learner parameters, nuisance comparison, and sensitivity grid.
 
 ## Results
 
@@ -37,9 +38,6 @@ absolute Monte Carlo mean bias below 0.0046.
   summary cells, adverse findings, and paired comparisons.
 - [Nuisance-learner results](results/nuisance_comparison/summary.json) and
   [paired comparisons](results/nuisance_comparison/paired_comparisons.json).
-- Figures: [sensitivity](results/sensitivity/figures),
-  [estimator distributions](results/sensitivity/distributions), and
-  [Series OLS / decision-tree comparisons](results/nuisance_comparison).
 
 These studies use known low-dimensional, monotonic treatment structure, with
 learned rather than oracle nuisances. Bias reductions are specific to the stated
@@ -50,10 +48,13 @@ minimum cross-fit coverage across the sensitivity grid is 87.5%.
 
 ```bash
 python -m pip install -e '.[test]'
-python -B scripts/check_saved_results.py
+python -m pytest
+python scripts/run_sensitivity.py --help
+python scripts/run_nuisance_comparison.py --help
 ```
 
-The saved-result check fits no models. The two main study runners require Linux and an
-explicit `DML_EXECUTION_ROOT` matching the checkout. Full historical replay
-additionally needs the original per-replication archives and frozen source;
-this repository provides selected code and numerical summaries, not those archives.
+Unit tests use small synthetic inputs. The two study runners require Linux
+and an explicit `DML_EXECUTION_ROOT`
+matching the checkout. Full historical replay additionally needs the original
+per-replication archives and frozen source; this repository provides the selected
+study implementations and complete numerical summaries, not those archives.

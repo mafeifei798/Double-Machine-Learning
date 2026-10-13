@@ -14,14 +14,13 @@ import time
 import warnings
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'src'))
 from dml_studies import sensitivity as s
-from run_reference import digest,atomic_json
+from study_utils import digest,atomic_json
 from execution_guard import require_execution_root
 FILES=('configs/sensitivity.json','configs/moderate_dgp.json',
     'src/dml_studies/sensitivity.py','src/dml_studies/moderate_dgp.py','src/dml_studies/orthogonalization_crossfitting.py',
     'src/dml_studies/doubleml_reference.py','src/dml_studies/iv_score.py','src/dml_studies/__init__.py',
-    'src/dml_studies/partialling_out.py','scripts/run_sensitivity.py','scripts/execution_guard.py','scripts/analyze_sensitivity.py',
-    'scripts/verify_sensitivity.py','scripts/check_sensitivity_doubleml.py','scripts/check_sensitivity_replay.py',
-    'scripts/run_reference.py','scripts/analyze_reference.py','scripts/analyze_moderate_dgp.py','tests/test_sensitivity.py')
+    'scripts/run_sensitivity.py','scripts/execution_guard.py','scripts/analyze_sensitivity.py',
+    'scripts/study_utils.py','tests/conftest.py','tests/test_sensitivity.py','pyproject.toml')
 
 
 def once(path,value):
@@ -83,24 +82,21 @@ def main():
     lock=(ROOT/'RUN.lock').open('a');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB);os.nice(10)
     once(ROOT/'SERVER_START.json',dict(host=platform.node(),pid=os.getpid(),python=sys.executable,at=time.time()));code=1
     try:
-        import numpy,scipy,sklearn,xgboost,doubleml
+        import numpy,scipy,sklearn,xgboost
         p=json.loads((ROOT/'configs/sensitivity.json').read_text());q=json.loads((ROOT/p['base_config']).read_text())
         identity=dict(protocol=p,base_protocol=q,source_hashes={f:digest(ROOT/f) for f in FILES},
-            environment=dict(python=platform.python_version(),numpy=numpy.__version__,scipy=scipy.__version__,sklearn=sklearn.__version__,xgboost=xgboost.__version__,doubleml=doubleml.__version__))
+            environment=dict(python=platform.python_version(),numpy=numpy.__version__,scipy=scipy.__version__,sklearn=sklearn.__version__,xgboost=xgboost.__version__))
         sha=hashlib.sha256(json.dumps(identity,sort_keys=True).encode()).hexdigest();once(ROOT/'SOURCE_FROZEN.json',dict(identity=identity,identity_sha256=sha,at=time.time()))
         with (ROOT/'SERVER_PREFLIGHT.log').open('x') as log:
             test=subprocess.run([sys.executable,'-m','pytest','tests/test_sensitivity.py','-q'],cwd=ROOT,env=env,stdout=log,stderr=subprocess.STDOUT)
         once(ROOT/'SERVER_PREFLIGHT.json',dict(returncode=test.returncode,log_sha256=digest(ROOT/'SERVER_PREFLIGHT.log')))
         if test.returncode:raise RuntimeError('software preflight failed; no scientific grid launched')
-        with (ROOT/'DOUBLEML_CHECK.json').open('x') as stream:subprocess.run([sys.executable,'scripts/check_sensitivity_doubleml.py'],cwd=ROOT,env=env,stdout=stream,check=True)
-        out=ROOT/'output/formal';out.mkdir(parents=True,exist_ok=False);once(out/'FROZEN_MANIFEST.json',dict(identity=identity,identity_sha256=sha,doubleml_check_sha256=digest(ROOT/'DOUBLEML_CHECK.json')))
+        out=ROOT/'output/formal';out.mkdir(parents=True,exist_ok=False);once(out/'FROZEN_MANIFEST.json',dict(identity=identity,identity_sha256=sha))
         dispatch(p,q,out,sha)
         subprocess.run([sys.executable,'scripts/analyze_sensitivity.py'],cwd=ROOT,env=env,check=True)
-        with (ROOT/'INDEPENDENT_VERIFICATION.json').open('x') as stream:subprocess.run([sys.executable,'scripts/verify_sensitivity.py'],cwd=ROOT,env=env,stdout=stream,check=True)
-        with (ROOT/'SOFTWARE_REPLAY_CHECK.json').open('x') as stream:subprocess.run([sys.executable,'scripts/check_sensitivity_replay.py'],cwd=ROOT,env=env,stdout=stream,check=True)
         code=0
     finally:once(ROOT/'SERVER_EXIT.json',dict(returncode=code,pid=os.getpid(),at=time.time()))
-    print('COMPLETE_VERIFIED_SENSITIVITY',flush=True)
+    print('COMPLETE_SENSITIVITY',flush=True)
 
 
 if __name__=='__main__':main()
