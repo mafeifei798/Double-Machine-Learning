@@ -1,0 +1,17 @@
+{
+  "status": "PASS_NUMERIC_AND_VISUAL_QA",
+  "pdf_pages": 32,
+  "all_32_pages_visually_reviewed": true,
+  "pdf_replacement_glyphs": 0,
+  "primary_figures": 6,
+  "headline_figures": 1,
+  "support_figures": 34,
+  "table_images": 11,
+  "all_gallery_links_exist": true,
+  "gallery_links_checked": 61,
+  "local_model_fits": 0,
+  "new_server_runs": 0,
+  "original_raw_records_modified": false,
+  "github_modified": false,
+  "pdf_sha256": "ec24df81e2bd3ea3c8e193977cac37cd97e60d509fa426226c039808c3954436"
+}

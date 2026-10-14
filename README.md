@@ -58,6 +58,59 @@ learned rather than oracle nuisances. Bias reductions are specific to the stated
 comparison and do not imply uniformly lower error or valid interval coverage;
 minimum cross-fit coverage across the sensitivity grid is 87.5%.
 
+## Complete moderate-DGP evidence: linear and nonlinear
+
+- [Complete 32-page report](output/pdf/DML_CV_Evidence.pdf)
+- All 41 charts: [six main figures plus an overview](results/cv_evidence/figures)
+  and [34 extension figures](results/cv_evidence/extensions)
+- [All 11 table images](results/cv_evidence/tables), including the
+  [headline comparison](results/cv_evidence/tables/table_0_headline.png)
+- [Offline gallery, grouped by Linear / Nonlinear DGP](results/cv_evidence/index.html)
+- [Numerical results](results/cv_evidence/summary.json),
+  [selected saved draws](results/cv_evidence/primary_draws.csv), and
+  [verification](results/cv_evidence/verification.json)
+- [Saved-record reproduction instructions](results/cv_evidence/REPRODUCE.txt)
+
+Both headline comparisons use the moderate `n=1,000`, `K=2`, `R=200` anchor
+described above. The 89.4% and 97.5% reductions are unchanged. This report does
+not pool those estimates with the separate baseline completion chapter below.
+
+| Comparison | Linear DGP | Nonlinear DGP |
+| --- | --- | --- |
+| Non-orthogonal ML vs DML | [Table 1](results/cv_evidence/tables/table_1.png), [Figure 1](results/cv_evidence/figures/figure_1_figure1_linear.png) | [Table 2](results/cv_evidence/tables/table_2.png), [Figure 2](results/cv_evidence/figures/figure_2_figure1_nonlinear.png) |
+| Learner choice | [Table 3](results/cv_evidence/tables/table_3.png), [Figure 3](results/cv_evidence/figures/figure_3_learner_sensitivity_linear.png) | [Table 4](results/cv_evidence/tables/table_4.png), [Figure 4](results/cv_evidence/figures/figure_4_learner_sensitivity_nonlinear.png) |
+| Full no-split vs cross-fitting | [Table 5](results/cv_evidence/tables/table_5.png), [Figure 5](results/cv_evidence/figures/figure_5_figure2_linear.png), [raw-error companion](results/cv_evidence/extensions/raw_crossfitting_linear.png) | [Table 6](results/cv_evidence/tables/table_6.png), [Figure 6](results/cv_evidence/figures/figure_6_figure2_nonlinear.png), [raw-error companion](results/cv_evidence/extensions/raw_crossfitting_nonlinear.png) |
+| Equal-training shared-bank control | [Table 7](results/cv_evidence/tables/table_7.png), [histogram](results/cv_evidence/extensions/moderate_figure2_linear_equal_train_reuse_hist.png) | [Table 8](results/cv_evidence/tables/table_8.png), [histogram](results/cv_evidence/extensions/moderate_figure2_nonlinear_equal_train_reuse_hist.png) |
+| Series OLS / decision-tree control | [Linear figure](results/cv_evidence/extensions/controlled_figure2_linear.png) | [Nonlinear figure](results/cv_evidence/extensions/controlled_figure2_nonlinear.png) |
+
+All 24 sensitivity figures are retained: baseline/moderate DGP levels, both
+mechanisms, sample-size/fold-count and regularization factors, and bias/RMSE/
+coverage. Each sensitivity image contains linear panels in its upper row and
+nonlinear panels in its lower row. The full 600-cell sensitivity and 106-cell
+nuisance summaries remain included, with adverse and inconclusive outcomes.
+Original and restyled views of the same saved data are retained; 41 images
+does not mean 41 independent experiments.
+
+Figures 1-2 show raw errors; Figures 5-6 show studentized errors. Figures 3-4
+use mean +/-1.96 MC SD as a sampling spread, not a confidence interval for the
+Monte Carlo mean. Residual bias, variance tradeoffs and coverage shortfalls are
+not removed or relabelled as universal unbiasedness.
+
+Download the repository and open `results/cv_evidence/index.html` for the
+complete offline gallery; GitHub itself displays HTML source, while PNGs and
+the PDF are directly viewable. Independently recount all 6,000 selected saved
+estimates without installing or running ML learners:
+
+```bash
+python3 -B scripts/verify_cv_simulation_evidence.py
+```
+
+The cached CSV is included; the 800 original receipt hashes are recorded,
+but the full 800 per-job JSON files are not bundled in this attachment.
+Creation-time flags such as `github_modified: false` in the report evidence
+describe the earlier build, not this subsequent publication. No experiment
+was rerun, and no earlier result or extension file was replaced or deleted.
+
 ## Run
 
 ```bash

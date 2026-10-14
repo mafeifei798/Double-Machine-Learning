@@ -1,0 +1,119 @@
+<!doctype html><html><head><meta charset="utf-8"><title>DML CV Evidence</title>
+<style>body{font-family:Georgia,serif;max-width:1120px;margin:35px auto;padding:0 20px;color:#222}h1,h2{font-weight:600}img{max-width:100%;height:auto}table{border-collapse:collapse;width:100%;margin:16px 0 28px;font-variant-numeric:tabular-nums}th,td{padding:9px 7px;text-align:center}thead{border-top:2px solid;border-bottom:1px solid}tbody{border-bottom:2px solid}section{margin-bottom:45px}summary{cursor:pointer;padding:12px;background:#f4f4f4}.note{background:#f7f7f7;padding:16px;line-height:1.65}a{color:#075b9c}</style></head><body>
+<h1>DML 简历主实验：Linear + Nonlinear 完整版</h1><p><a href="../../output/pdf/DML_CV_Evidence.pdf">完整 PDF</a> · <a href="summary.json">主实验数值</a> · <a href="verification.json">复核记录</a></p>
+<div class="note">仅使用已保存的服务器结果，未拟合任何模型。简历两项指标均对应 moderate DGP、n=1,000、K=2、R=200，每项对三个 learner × 两个 DGP 的绝对 Monte Carlo 平均偏差等权平均。不是 MAE，不混入 n=500 / n=300 baseline，也不把全部敏感性实验合成一个去偏百分比。保留残余偏差、覆盖不足及负结果。</div>
+<img src="figures/headline_bias.png" alt="89.4% and 97.5% headline bias reductions">
+<section><h2>Table 0: 简历主指标</h2><img src="tables/table_0_headline.png" alt="Headline table"></section>
+<p><a href="#linear">Linear DGP</a> · <a href="#nonlinear">Nonlinear DGP</a> · <a href="#sensitivity">全部24张敏感性图</a> · <a href="#archived">原始直方图</a></p>
+<h2 id="linear">Linear DGP：全部主表、主图与对照</h2>
+<section><h2>Table 1: Non-Orthogonal ML vs. DML (Linear Moderate DGP, n=1,000, R=200)</h2><table><thead>
+<tr><th rowspan="2">Learner</th><th colspan="3">Non-Orthogonal ML</th><th colspan="3">IV-type DML</th></tr>
+<tr><th>Bias</th><th>MC SD</th><th>Mean SE</th><th>Bias</th><th>MC SD</th><th>Mean SE</th></tr>
+</thead><tbody>
+<tr><td>Random Forest</td><td>0.0540</td><td>0.0276</td><td>0.0214</td><td>0.0128</td><td>0.0315</td><td>0.0312</td></tr>
+<tr><td>XGBoost</td><td>0.0464</td><td>0.0292</td><td>0.0216</td><td>0.0050</td><td>0.0326</td><td>0.0330</td></tr>
+<tr><td>Lasso</td><td>0.0125</td><td>0.0313</td><td>0.0211</td><td>0.0008</td><td>0.0318</td><td>0.0321</td></tr>
+</tbody></table><a href="tables/table_1.png">高分辨率表格</a></section>
+<section><h3>Figure 1: Linear DGP</h3><img loading="lazy" src="figures/figure_1_figure1_linear.png" alt="Figure 1: Linear DGP"></section>
+<section><h2>Table 3: Learner Sensitivity (Linear Moderate DGP, n=1,000, R=200)</h2><table><thead>
+<tr><th>Learner</th><th>Mean estimate</th><th>Bias</th><th>MC SD</th><th>95% MC spread</th><th>Coverage</th></tr>
+</thead><tbody>
+<tr><td>Random Forest</td><td>0.5128</td><td>0.0128</td><td>0.0315</td><td>[0.4511, 0.5745]</td><td>93.5%</td></tr>
+<tr><td>XGBoost</td><td>0.5050</td><td>0.0050</td><td>0.0326</td><td>[0.4411, 0.5689]</td><td>94.5%</td></tr>
+<tr><td>Lasso</td><td>0.5008</td><td>0.0008</td><td>0.0318</td><td>[0.4385, 0.5631]</td><td>95.0%</td></tr>
+</tbody></table><a href="tables/table_3.png">高分辨率表格</a></section>
+<section><h3>Figure 3: Linear DGP</h3><img loading="lazy" src="figures/figure_3_learner_sensitivity_linear.png" alt="Figure 3: Linear DGP"></section>
+<section><h2>Table 5: Full-Sample No Split vs. Cross-Fitting (Linear Moderate DGP, n=1,000, R=200)</h2><table><thead>
+<tr><th rowspan="2">Learner</th><th colspan="3">Full-Sample No Split</th><th colspan="3">IV-type DML</th></tr>
+<tr><th>Bias</th><th>MC SD</th><th>Mean SE</th><th>Bias</th><th>MC SD</th><th>Mean SE</th></tr>
+</thead><tbody>
+<tr><td>Random Forest</td><td>-0.2704</td><td>0.0159</td><td>0.0168</td><td>0.0115</td><td>0.0385</td><td>0.0310</td></tr>
+<tr><td>XGBoost</td><td>-0.4625</td><td>0.0054</td><td>0.0217</td><td>0.0019</td><td>0.0411</td><td>0.0358</td></tr>
+<tr><td>Lasso</td><td>-0.0130</td><td>0.0335</td><td>0.0309</td><td>0.0050</td><td>0.0374</td><td>0.0332</td></tr>
+</tbody></table><a href="tables/table_5.png">高分辨率表格</a></section>
+<section><h3>Figure 5: Linear DGP</h3><img loading="lazy" src="figures/figure_5_figure2_linear.png" alt="Figure 5: Linear DGP"></section>
+<section><h3>No-split vs Cross-fitting: raw errors / linear</h3><img loading="lazy" src="extensions/raw_crossfitting_linear.png" alt="No-split vs Cross-fitting: raw errors / linear"></section>
+<section><h2>Table 7: Equal-Training Reuse vs. Cross-Fitting (Linear Moderate DGP, n=1,000, R=200)</h2><table><thead>
+<tr><th rowspan="2">Learner</th><th colspan="3">Equal-Training Reuse</th><th colspan="3">IV-type DML</th></tr>
+<tr><th>Bias</th><th>MC SD</th><th>Mean SE</th><th>Bias</th><th>MC SD</th><th>Mean SE</th></tr>
+</thead><tbody>
+<tr><td>Random Forest</td><td>-0.2576</td><td>0.0166</td><td>0.0170</td><td>0.0115</td><td>0.0385</td><td>0.0310</td></tr>
+<tr><td>XGBoost</td><td>-0.4672</td><td>0.0049</td><td>0.0233</td><td>0.0019</td><td>0.0411</td><td>0.0358</td></tr>
+<tr><td>Lasso</td><td>-0.0312</td><td>0.0333</td><td>0.0306</td><td>0.0050</td><td>0.0374</td><td>0.0332</td></tr>
+</tbody></table><a href="tables/table_7.png">高分辨率表格</a></section>
+<section><h3>Equal-training shared-bank control / linear</h3><img loading="lazy" src="extensions/moderate_figure2_linear_equal_train_reuse_hist.png" alt="Equal-training shared-bank control / linear"></section>
+<section><h3>Series OLS / Decision Tree control / linear</h3><img loading="lazy" src="extensions/controlled_figure2_linear.png" alt="Series OLS / Decision Tree control / linear"></section>
+<h2 id="nonlinear">Nonlinear DGP：全部主表、主图与对照</h2>
+<section><h2>Table 2: Non-Orthogonal ML vs. DML (Nonlinear Moderate DGP, n=1,000, R=200)</h2><table><thead>
+<tr><th rowspan="2">Learner</th><th colspan="3">Non-Orthogonal ML</th><th colspan="3">IV-type DML</th></tr>
+<tr><th>Bias</th><th>MC SD</th><th>Mean SE</th><th>Bias</th><th>MC SD</th><th>Mean SE</th></tr>
+</thead><tbody>
+<tr><td>Random Forest</td><td>0.0405</td><td>0.0286</td><td>0.0229</td><td>-0.0014</td><td>0.0331</td><td>0.0327</td></tr>
+<tr><td>XGBoost</td><td>0.0346</td><td>0.0301</td><td>0.0230</td><td>-0.0022</td><td>0.0345</td><td>0.0332</td></tr>
+<tr><td>Lasso</td><td>0.0314</td><td>0.0318</td><td>0.0227</td><td>-0.0012</td><td>0.0335</td><td>0.0322</td></tr>
+</tbody></table><a href="tables/table_2.png">高分辨率表格</a></section>
+<section><h3>Figure 2: Nonlinear DGP</h3><img loading="lazy" src="figures/figure_2_figure1_nonlinear.png" alt="Figure 2: Nonlinear DGP"></section>
+<section><h2>Table 4: Learner Sensitivity (Nonlinear Moderate DGP, n=1,000, R=200)</h2><table><thead>
+<tr><th>Learner</th><th>Mean estimate</th><th>Bias</th><th>MC SD</th><th>95% MC spread</th><th>Coverage</th></tr>
+</thead><tbody>
+<tr><td>Random Forest</td><td>0.4986</td><td>-0.0014</td><td>0.0331</td><td>[0.4337, 0.5636]</td><td>94.5%</td></tr>
+<tr><td>XGBoost</td><td>0.4978</td><td>-0.0022</td><td>0.0345</td><td>[0.4303, 0.5653]</td><td>94.5%</td></tr>
+<tr><td>Lasso</td><td>0.4988</td><td>-0.0012</td><td>0.0335</td><td>[0.4331, 0.5646]</td><td>93.5%</td></tr>
+</tbody></table><a href="tables/table_4.png">高分辨率表格</a></section>
+<section><h3>Figure 4: Nonlinear DGP</h3><img loading="lazy" src="figures/figure_4_learner_sensitivity_nonlinear.png" alt="Figure 4: Nonlinear DGP"></section>
+<section><h2>Table 6: Full-Sample No Split vs. Cross-Fitting (Nonlinear Moderate DGP, n=1,000, R=200)</h2><table><thead>
+<tr><th rowspan="2">Learner</th><th colspan="3">Full-Sample No Split</th><th colspan="3">IV-type DML</th></tr>
+<tr><th>Bias</th><th>MC SD</th><th>Mean SE</th><th>Bias</th><th>MC SD</th><th>Mean SE</th></tr>
+</thead><tbody>
+<tr><td>Random Forest</td><td>-0.2941</td><td>0.0134</td><td>0.0180</td><td>-0.0073</td><td>0.0324</td><td>0.0337</td></tr>
+<tr><td>XGBoost</td><td>-0.4768</td><td>0.0036</td><td>0.0200</td><td>-0.0121</td><td>0.0346</td><td>0.0362</td></tr>
+<tr><td>Lasso</td><td>-0.0180</td><td>0.0306</td><td>0.0313</td><td>-0.0010</td><td>0.0332</td><td>0.0336</td></tr>
+</tbody></table><a href="tables/table_6.png">高分辨率表格</a></section>
+<section><h3>Figure 6: Nonlinear DGP</h3><img loading="lazy" src="figures/figure_6_figure2_nonlinear.png" alt="Figure 6: Nonlinear DGP"></section>
+<section><h3>No-split vs Cross-fitting: raw errors / nonlinear</h3><img loading="lazy" src="extensions/raw_crossfitting_nonlinear.png" alt="No-split vs Cross-fitting: raw errors / nonlinear"></section>
+<section><h2>Table 8: Equal-Training Reuse vs. Cross-Fitting (Nonlinear Moderate DGP, n=1,000, R=200)</h2><table><thead>
+<tr><th rowspan="2">Learner</th><th colspan="3">Equal-Training Reuse</th><th colspan="3">IV-type DML</th></tr>
+<tr><th>Bias</th><th>MC SD</th><th>Mean SE</th><th>Bias</th><th>MC SD</th><th>Mean SE</th></tr>
+</thead><tbody>
+<tr><td>Random Forest</td><td>-0.2855</td><td>0.0143</td><td>0.0184</td><td>-0.0073</td><td>0.0324</td><td>0.0337</td></tr>
+<tr><td>XGBoost</td><td>-0.4794</td><td>0.0030</td><td>0.0212</td><td>-0.0121</td><td>0.0346</td><td>0.0362</td></tr>
+<tr><td>Lasso</td><td>-0.0353</td><td>0.0308</td><td>0.0309</td><td>-0.0010</td><td>0.0332</td><td>0.0336</td></tr>
+</tbody></table><a href="tables/table_8.png">高分辨率表格</a></section>
+<section><h3>Equal-training shared-bank control / nonlinear</h3><img loading="lazy" src="extensions/moderate_figure2_nonlinear_equal_train_reuse_hist.png" alt="Equal-training shared-bank control / nonlinear"></section>
+<section><h3>Series OLS / Decision Tree control / nonlinear</h3><img loading="lazy" src="extensions/controlled_figure2_nonlinear.png" alt="Series OLS / Decision Tree control / nonlinear"></section>
+<section><h2>Table 9: Series OLS / Decision Tree 受控实验</h2><img src="tables/table_9.png" alt="Table 9"></section>
+<section><h2>Table 10: 完整敏感性网格中的 Cross-fit 范围</h2><img src="tables/table_10.png" alt="Table 10"></section>
+<p>Tables 3-4 / Figures 3-4 中的误差条为 MC 抽样散布，不是均值置信区间。Figures 1-2 是原始误差，Figures 5-6 是 studentized errors；No-split 极端值未截掉。完整全部600个敏感性单元及106个 nuisance 单元见 <a href="sensitivity_summary.json">sensitivity JSON</a> 和 <a href="nuisance_summary.json">nuisance JSON</a>。</p>
+<h2 id="sensitivity">完整敏感性分析：24张，Linear 与 Nonlinear 均保留</h2><p>每张图的上排是 Linear、下排是 Nonlinear。Baseline / Moderate × 两组机制 × 两类敏感因素 × Bias / RMSE / Coverage 全部展示，不只选 Bias 或 Coverage。</p>
+<h3>Baseline sensitivity</h3>
+<details><summary>baseline_figure1_sample_fold_bias.png</summary><img loading="lazy" src="extensions/baseline_figure1_sample_fold_bias.png" alt="baseline_figure1_sample_fold_bias.png"></details>
+<details><summary>baseline_figure2_sample_fold_bias.png</summary><img loading="lazy" src="extensions/baseline_figure2_sample_fold_bias.png" alt="baseline_figure2_sample_fold_bias.png"></details>
+<details><summary>baseline_figure1_sample_fold_rmse.png</summary><img loading="lazy" src="extensions/baseline_figure1_sample_fold_rmse.png" alt="baseline_figure1_sample_fold_rmse.png"></details>
+<details><summary>baseline_figure2_sample_fold_rmse.png</summary><img loading="lazy" src="extensions/baseline_figure2_sample_fold_rmse.png" alt="baseline_figure2_sample_fold_rmse.png"></details>
+<details><summary>baseline_figure1_sample_fold_coverage.png</summary><img loading="lazy" src="extensions/baseline_figure1_sample_fold_coverage.png" alt="baseline_figure1_sample_fold_coverage.png"></details>
+<details><summary>baseline_figure2_sample_fold_coverage.png</summary><img loading="lazy" src="extensions/baseline_figure2_sample_fold_coverage.png" alt="baseline_figure2_sample_fold_coverage.png"></details>
+<details><summary>baseline_figure1_parameters_bias.png</summary><img loading="lazy" src="extensions/baseline_figure1_parameters_bias.png" alt="baseline_figure1_parameters_bias.png"></details>
+<details><summary>baseline_figure2_parameters_bias.png</summary><img loading="lazy" src="extensions/baseline_figure2_parameters_bias.png" alt="baseline_figure2_parameters_bias.png"></details>
+<details><summary>baseline_figure1_parameters_rmse.png</summary><img loading="lazy" src="extensions/baseline_figure1_parameters_rmse.png" alt="baseline_figure1_parameters_rmse.png"></details>
+<details><summary>baseline_figure2_parameters_rmse.png</summary><img loading="lazy" src="extensions/baseline_figure2_parameters_rmse.png" alt="baseline_figure2_parameters_rmse.png"></details>
+<details><summary>baseline_figure1_parameters_coverage.png</summary><img loading="lazy" src="extensions/baseline_figure1_parameters_coverage.png" alt="baseline_figure1_parameters_coverage.png"></details>
+<details><summary>baseline_figure2_parameters_coverage.png</summary><img loading="lazy" src="extensions/baseline_figure2_parameters_coverage.png" alt="baseline_figure2_parameters_coverage.png"></details>
+<h3>Moderate sensitivity</h3>
+<details><summary>moderate_figure1_sample_fold_bias.png</summary><img loading="lazy" src="extensions/moderate_figure1_sample_fold_bias.png" alt="moderate_figure1_sample_fold_bias.png"></details>
+<details><summary>moderate_figure2_sample_fold_bias.png</summary><img loading="lazy" src="extensions/moderate_figure2_sample_fold_bias.png" alt="moderate_figure2_sample_fold_bias.png"></details>
+<details><summary>moderate_figure1_sample_fold_rmse.png</summary><img loading="lazy" src="extensions/moderate_figure1_sample_fold_rmse.png" alt="moderate_figure1_sample_fold_rmse.png"></details>
+<details><summary>moderate_figure2_sample_fold_rmse.png</summary><img loading="lazy" src="extensions/moderate_figure2_sample_fold_rmse.png" alt="moderate_figure2_sample_fold_rmse.png"></details>
+<details><summary>moderate_figure1_sample_fold_coverage.png</summary><img loading="lazy" src="extensions/moderate_figure1_sample_fold_coverage.png" alt="moderate_figure1_sample_fold_coverage.png"></details>
+<details><summary>moderate_figure2_sample_fold_coverage.png</summary><img loading="lazy" src="extensions/moderate_figure2_sample_fold_coverage.png" alt="moderate_figure2_sample_fold_coverage.png"></details>
+<details><summary>moderate_figure1_parameters_bias.png</summary><img loading="lazy" src="extensions/moderate_figure1_parameters_bias.png" alt="moderate_figure1_parameters_bias.png"></details>
+<details><summary>moderate_figure2_parameters_bias.png</summary><img loading="lazy" src="extensions/moderate_figure2_parameters_bias.png" alt="moderate_figure2_parameters_bias.png"></details>
+<details><summary>moderate_figure1_parameters_rmse.png</summary><img loading="lazy" src="extensions/moderate_figure1_parameters_rmse.png" alt="moderate_figure1_parameters_rmse.png"></details>
+<details><summary>moderate_figure2_parameters_rmse.png</summary><img loading="lazy" src="extensions/moderate_figure2_parameters_rmse.png" alt="moderate_figure2_parameters_rmse.png"></details>
+<details><summary>moderate_figure1_parameters_coverage.png</summary><img loading="lazy" src="extensions/moderate_figure1_parameters_coverage.png" alt="moderate_figure1_parameters_coverage.png"></details>
+<details><summary>moderate_figure2_parameters_coverage.png</summary><img loading="lazy" src="extensions/moderate_figure2_parameters_coverage.png" alt="moderate_figure2_parameters_coverage.png"></details>
+<h2 id="archived">其余原始 Studentized 直方图：两种 DGP 全部保留</h2><p>同一份已保存实验的原始展示版本，不是新实验，不重复计入简历指标。</p>
+<details><summary>moderate_figure1_linear_naive_ml_hist.png</summary><img loading="lazy" src="extensions/moderate_figure1_linear_naive_ml_hist.png" alt="moderate_figure1_linear_naive_ml_hist.png"></details>
+<details><summary>moderate_figure1_nonlinear_naive_ml_hist.png</summary><img loading="lazy" src="extensions/moderate_figure1_nonlinear_naive_ml_hist.png" alt="moderate_figure1_nonlinear_naive_ml_hist.png"></details>
+<details><summary>moderate_figure2_linear_full_no_split_hist.png</summary><img loading="lazy" src="extensions/moderate_figure2_linear_full_no_split_hist.png" alt="moderate_figure2_linear_full_no_split_hist.png"></details>
+<details><summary>moderate_figure2_nonlinear_full_no_split_hist.png</summary><img loading="lazy" src="extensions/moderate_figure2_nonlinear_full_no_split_hist.png" alt="moderate_figure2_nonlinear_full_no_split_hist.png"></details>
+</body></html>

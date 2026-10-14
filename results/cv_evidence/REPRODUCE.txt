@@ -1,0 +1,56 @@
+DML CV EVIDENCE: SAVED RESULTS ONLY
+
+Open output/pdf/DML_CV_Evidence.pdf from the repository/package root, or open
+results/cv_evidence/index.html for all table and figure images.
+
+COMPLETE VISUAL COVERAGE
+  41 charts and 11 table images; Linear and Nonlinear are both included.
+  All 24 sensitivity figures are retained: baseline/moderate x two mechanisms
+  x sample/fold or regularization factors x bias/RMSE/coverage. Each sensitivity
+  figure includes the linear DGP in its upper row and nonlinear in its lower row.
+  All 32 previously retained extension source images are copied unchanged,
+  including both controlled-tree DGPs and all six original moderate histograms.
+  Original and restyled views of the same data are not independent experiments.
+
+Protocol for BOTH CV headline comparisons:
+  moderate DGP, n=1,000, p=20, theta0=0.5, K=2, base preset, R=200.
+  Three nuisance learners (RF, XGBoost, Lasso) x two DGPs (linear/nonlinear).
+  Percentages compare equal-weight averages of absolute MC mean biases over
+  the six settings. They are NOT MAE/RMSE reductions or grid-wide averages.
+  Non-orthogonal ML vs DML: 89.4%.
+  Full-sample no-split vs cross-fitting: 97.5%.
+
+Independently audit all 6,000 selected saved estimates WITHOUT ML:
+  python3 -B scripts/verify_cv_simulation_evidence.py
+
+This audit checks the cached CSV, all summary statistics, headline reductions,
+shared-bank identifiers and generated-file hashes. The package includes the
+800 original receipt hashes, not all 800 original per-job JSON files. The
+initial build additionally verified those original files and 19 frozen source
+hashes against the complete local archive; cached-CSV verification does not
+claim to repeat that physical source audit.
+
+Full rendering from original archived job records requires the original v6
+evidence root and numpy/scipy/matplotlib/reportlab. It performs no fitting:
+  python3 -B scripts/build_cv_simulation_evidence.py \
+    --v6-root /path/to/original/v6/evidence \
+    --output /path/to/new/results/cv_evidence \
+    --pdf-output /path/to/new/output/pdf/DML_CV_Evidence.pdf
+The builder intentionally refuses to overwrite an existing output or PDF.
+
+Figure definitions:
+  Figures 1-2: raw estimator errors.
+  Figures 3-4: learner mean estimates +/-1.96 MC SD (sampling spread, NOT a
+               confidence interval for the Monte Carlo mean).
+  Figures 5-6: studentized errors. Extreme no-split errors are not clipped.
+  Raw-error cross-fitting companions are also supplied.
+
+Series OLS / decision-tree controls and sensitivity analyses are separate
+validation studies, not pooled into the two headline percentages. All 600
+sensitivity summary cells and all 106 nuisance-study cells are retained.
+Adverse findings, residual bias, variance tradeoffs and coverage shortfalls
+remain visible. Some grid cells are aliases, not independent runs.
+
+No ML fitting, server launch, retuning, source-record rewriting or GitHub
+update was performed to create this attachment. Existing results and the
+earlier completed simulation chapter remain unchanged.
