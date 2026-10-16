@@ -10,7 +10,7 @@ from dml_studies import sensitivity as s, moderate_dgp as h, orthogonalization_c
 
 @pytest.fixture
 def inputs():
-    p=json.loads((ROOT/'configs/sensitivity.json').read_text());q=json.loads((ROOT/p['base_config']).read_text())
+    p=json.loads((ROOT/'src/dml_studies/configs/sensitivity.json').read_text());q=json.loads((ROOT/p['base_config']).read_text())
     p.update(seed=p['preflight_seed'],sample_sizes=[100,200],anchor_n=200,replications=2)
     for family in ('rf','xgb'):
         for role in ('m','g','ell'):q[family][role]['n_estimators']=5
@@ -18,7 +18,7 @@ def inputs():
 
 
 def test_grid_frozen():
-    p=json.loads((ROOT/'configs/sensitivity.json').read_text())
+    p=json.loads((ROOT/'src/dml_studies/configs/sensitivity.json').read_text())
     assert len(set(s.scenarios(p)))==10
     assert p['replications']==200 and p['seed']!=p['preflight_seed']
     assert p['sample_sizes']==[300,1000,3000] and p['fold_counts']==[2,5]

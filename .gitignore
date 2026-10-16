@@ -7,8 +7,9 @@ __pycache__/
 *.tar.gz
 *.log
 
-# Published, hash-pinned saved evidence; unpacked copies are reproducible.
-!evidence/completion_results_v7.tgz
-!evidence/server_source_v7.tgz
-evidence/bridge/
-evidence/v6_selected/
+output/
+SERVER_*.json
+SOURCE_FROZEN.json
+FINITE_SAMPLE_*.json
+*.lock
+*.pending

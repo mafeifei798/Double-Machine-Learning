@@ -8,7 +8,7 @@ import pytest
 from dml_studies import doubleml_reference as fair
 from dml_studies import nuisance_comparison as repair
 
-P=json.loads((Path(__file__).resolve().parents[1]/"configs/nuisance_comparison.json").read_text())
+P=json.loads((Path(__file__).resolve().parents[1]/"src/dml_studies/configs/nuisance_comparison.json").read_text())
 
 
 def selections():
@@ -77,3 +77,31 @@ def test_disjoint_seeds():
     a=repair.config_for(P,"figure1","linear",True)
     b=repair.config_for(P,"figure1","linear",False)
     assert fair.draw(a,0).data_seed!=fair.draw(b,0).data_seed
+
+
+def test_protocol_label_does_not_change_estimates():
+    protocol={**P,"n":120,"development_n":120,"n_estimators":5,"ordinary_families":[]}
+    current=repair.run_replication(protocol,{},"figure1","linear",0,development=True)
+    alias={**protocol,"protocol_id":protocol["protocol_id"]+"_archived"}
+    archived=repair.run_replication(alias,{},"figure1","linear",0,development=True)
+    assert [{k:v for k,v in row.items() if k!="protocol_id"} for row in current]==[
+        {k:v for k,v in row.items() if k!="protocol_id"} for row in archived]
+
+
+def test_finite_sample_guard_requires_explicit_linux_checkout(monkeypatch):
+    scripts=Path(__file__).resolve().parents[1]/"src/dml_studies/cli"
+    monkeypatch.syspath_prepend(str(scripts))
+    import execution_guard
+    import run_finite_sample
+    monkeypatch.setattr(execution_guard.platform,"system",lambda:"Darwin")
+    monkeypatch.setenv("DML_EXECUTION_ROOT",str(run_finite_sample.ROOT))
+    with pytest.raises(RuntimeError):run_finite_sample.guard({})
+    monkeypatch.setattr(execution_guard.platform,"system",lambda:"Linux")
+    monkeypatch.delenv("DML_EXECUTION_ROOT")
+    with pytest.raises(RuntimeError):run_finite_sample.guard({})
+    monkeypatch.setenv("DML_EXECUTION_ROOT","relative-checkout")
+    with pytest.raises(RuntimeError):run_finite_sample.guard({})
+    monkeypatch.setenv("DML_EXECUTION_ROOT",str(run_finite_sample.ROOT.parent))
+    with pytest.raises(RuntimeError):run_finite_sample.guard({})
+    monkeypatch.setenv("DML_EXECUTION_ROOT",str(run_finite_sample.ROOT))
+    run_finite_sample.guard({})
