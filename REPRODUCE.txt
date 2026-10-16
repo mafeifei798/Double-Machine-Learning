@@ -5,7 +5,6 @@ The gallery includes all six restored primary figures, eight tables, 32 existing
 extension figures, all 600 sensitivity cells, and all 106 nuisance-study cells.
 
 New fits ran ONLY on the original authorized Linux server:
-  /data2/lzx/dhy/dml_simulation_completion_20261013/repository
   n=500, K=2, R=300, 3 learners, 2 DGPs, 600 fixed jobs, 3,600 estimates.
   One launch, 12 CPU workers, actual exit=0. No local fitting or GPU use.
 This run is COMPLETE. Do not launch run_legacy_bridge.py again.

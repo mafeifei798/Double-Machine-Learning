@@ -34,13 +34,18 @@
   "github_modified": false,
   "sensitivity_summary_sha256": "6b5e66c4ec9c8c53c0f5a0c2542c361deb8aad6a24afd17714bedbfd36c05117",
   "nuisance_summary_sha256": "a877f8fb253bb84acb95ce12cd1f6c5fc78b227efc882069617fe5bdd26ff789",
+  "pdf_metadata_update": {
+    "original_pdf_sha256": "d3cd0ae58dc35b5f46f6726f57e9a15bf8ed1542ea611e61cd8c9f7cf5d11d14",
+    "removed_document_info_fields": ["/CreationDate", "/ModDate"],
+    "page_content_unchanged": true
+  },
   "generated_files": {
     "summary.json": "da734de1ec1a4659fc6abc4d29963253d4b21b0b5b32197bc9ef2dd6ceb1783a",
     "sensitivity_summary.json": "6b5e66c4ec9c8c53c0f5a0c2542c361deb8aad6a24afd17714bedbfd36c05117",
     "index.html": "be457524390477e20b76fc158cd66e1c549003080450387dbcf2c604b5597125",
     "nuisance_summary.json": "a877f8fb253bb84acb95ce12cd1f6c5fc78b227efc882069617fe5bdd26ff789",
     "input_receipt_hashes.json": "ebcc7b6d5c2459c8daf23be12cbc265e5e2920c1f1c1f680738b8f7eb0520bae",
-    "Simulation_Completed.pdf": "d3cd0ae58dc35b5f46f6726f57e9a15bf8ed1542ea611e61cd8c9f7cf5d11d14",
+    "Simulation_Completed.pdf": "624d69614f7983bd5ce92b08585dd9010c0a2a958c48f2f07e3d889bbe28009c",
     "tables/table_8.png": "eddd99ce63caef655c2925be748003a1896609cc41f35ce5984deb4b09c8bb01",
     "tables/table_1.png": "3d22cd3108ffbe1fbb292116b54b3d2272c5967c94a37fab0f39f89ec663d236",
     "tables/table_3.png": "7ea72c8c5c4f152da27bb0b0f1cefc4b2dc09f9b1d55e0de943366d9e94bf5bf",

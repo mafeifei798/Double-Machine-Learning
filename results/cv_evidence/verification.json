@@ -49,13 +49,18 @@
     "moderate_figure2_sample_fold_rmse.png": "5ceb551202f20e6d1a4d46e1fc896c4c3058e04f85c517526e6511b3edb49a66"
   },
   "source_nuisance_summary_sha256": "a877f8fb253bb84acb95ce12cd1f6c5fc78b227efc882069617fe5bdd26ff789",
-  "pdf_sha256": "ec24df81e2bd3ea3c8e193977cac37cd97e60d509fa426226c039808c3954436",
+  "pdf_sha256": "f352d19cb098234be1e749b284e5593efee200e050b38d201a290d2c614d3576",
+  "pdf_metadata_update": {
+    "original_pdf_sha256": "ec24df81e2bd3ea3c8e193977cac37cd97e60d509fa426226c039808c3954436",
+    "removed_document_info_fields": ["/CreationDate", "/ModDate"],
+    "page_content_unchanged": true
+  },
   "builder_sha256": "4dd1672d054ad0f5e922dd9f101a1bdc640e8c91823e7075ab5c2e25710545a9",
   "generated_files": {
     "summary.json": "fb78e292e16fb4ac61c83a0bb4a5dbe87bfdf6abbf36427333b2572a9b34c156",
     "sensitivity_summary.json": "6b5e66c4ec9c8c53c0f5a0c2542c361deb8aad6a24afd17714bedbfd36c05117",
     "index.html": "51b2e638e845e74c0e2aa0e570da945feaf73de2a5e577a9ca0cc06c022d6e7b",
-    "qa.json": "dcb7e8cd12660e30d2332589f431e7296b1850280a87781976ac02e7e87bf896",
+    "qa.json": "3eb3e05c67a15d156f1a9283bbb05b35706fc10292f6b75a9f88829eb3b58ac2",
     "nuisance_summary.json": "a877f8fb253bb84acb95ce12cd1f6c5fc78b227efc882069617fe5bdd26ff789",
     "input_receipt_hashes.json": "e55000b025b42874bb146d3e4ba0d41d5f850234a23c7a129a560e1b9121464a",
     "primary_draws.csv": "c7d679b79a9d264277c6e0ef9167b79a55341aa0ac528f0423e12aa145eadd10",
